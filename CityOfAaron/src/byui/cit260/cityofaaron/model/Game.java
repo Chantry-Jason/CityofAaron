@@ -7,6 +7,7 @@ package byui.cit260.cityofaaron.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.ArrayList;
 /**
  *
  * @author JChantry
@@ -15,13 +16,14 @@ public class Game implements Serializable{
     
     // Class instance variables
 
-    Map theMap = new Map();
-    Player thePlayer = new Player();
-    CropData cropData = new CropData();
-    TeamMember team[] = new TeamMember(); //Not Sure
-    private ArrayList<ListItem> animals = new ArrayList<ListItem>(); //Not Sure
-    private ArrayList<ListItem> tools = new ArrayList<ListItem>();  //Not Sure
-    ListItem provisions = new ListItem();
+    private Map theMap = new Map();
+    private Player thePlayer = new Player();
+    private CropData cropData = new CropData();
+    private TeamMember[] team = new TeamMember[]; //Not Sure
+    private ArrayList<ListItem> animals; 
+    private ArrayList<ListItem> tools;
+    private ArrayList<ListItem> provisions;
+    
     
     public Game() {
         
