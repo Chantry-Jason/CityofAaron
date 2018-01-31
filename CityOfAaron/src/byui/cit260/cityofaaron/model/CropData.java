@@ -13,23 +13,24 @@ import java.io.Serializable;
 public class CropData{
     
     // CropData integers 
-    int year:
-    int population:
-    int acresOwned:
-    int cropYield:
-    int wheatInStore:
-    int numberWhoDied:
-    int newPeople:
-    int harvest:
-    int harvestAfterOffering:
-    int offering:
-    int offeringBushels:
-    int peopleFed:
-    int acresPlanted:
-    int numStarved:
-    int eatenByRats:
-    int wheatForPeople
+    private int year; 
+    private int population;
+    private int acresOwned; 
+    private int cropYield; 
+    private int wheatInStore; 
+    private int numberWhoDied;
+    private int newPeople;
+    private int harvest;
+    private int harvestAfterOffering;
+    private int offering;
+    private int offeringBushels;
+    private int peopleFed;
+    private int acresPlanted;
+    private int numStarved;
+    private int eatenByRats;
+    private int wheatForPeople;
 
+    //getters and setters
     public int getYear() {
         return year;
     }
