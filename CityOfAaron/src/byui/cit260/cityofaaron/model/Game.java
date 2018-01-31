@@ -14,14 +14,13 @@ import java.util.Objects;
 public class Game implements Serializable{
     
     // Class instance variables
-    //Note that most of these below are showing up as an error because they are 
-    // not created yet. Player is working because It is already created..
+
     Map theMap = new Map();
     Player thePlayer = new Player();
     CropData cropData = new CropData();
-    TeamMember team[] = new TeamMember();
-    private ArrayList<ListItem> animals = new ArrayList<ListItem>();
-    private ArrayList<ListItem> tools = new ArrayList<ListItem>(); 
+    TeamMember team[] = new TeamMember(); //Not Sure
+    private ArrayList<ListItem> animals = new ArrayList<ListItem>(); //Not Sure
+    private ArrayList<ListItem> tools = new ArrayList<ListItem>();  //Not Sure
     ListItem provisions = new ListItem();
     
     public Game() {

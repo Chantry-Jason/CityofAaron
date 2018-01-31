@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 package byui.cit260.cityofaaron.model;
-
+import java.io.Serializable;
 /**
  *
  * @author JChantry
  */
-public enum TeamMember {
+public enum TeamMember implements Serializable {
     
     Jason("Jason", "He is one of the team members of the team.", new Point(1,1)),
     Ken("Ken", "He is one of the team members of the team.", new Point(1,2)),
