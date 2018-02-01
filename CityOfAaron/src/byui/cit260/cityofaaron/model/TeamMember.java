@@ -23,6 +23,26 @@ public enum TeamMember implements Serializable {
         this.title = title;
  
     }
+
+    public static TeamMember getJason() {
+        return Jason;
+    }
+
+    public static TeamMember getKen() {
+        return Ken;
+    }
+
+    public static TeamMember getJoshua() {
+        return Joshua;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
    
     @Override
     public String toString() {

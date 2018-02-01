@@ -16,10 +16,10 @@ public class Game implements Serializable{
     
     // Class instance variables
 
-    private Map theMap = new Map();
-    private Player thePlayer = new Player();
-    private CropData cropData = new CropData();
-    private TeamMember[] team = new TeamMember[]; //Not Sure
+    private Map theMap;
+    private Player thePlayer;
+    private CropData cropData;
+    private TeamMember[] team ;
     private ArrayList<ListItem> animals; 
     private ArrayList<ListItem> tools;
     private ArrayList<ListItem> provisions;
@@ -61,29 +61,35 @@ public class Game implements Serializable{
         this.team = team;
     }
 
-    public <any> getAnimals() {
+    public ArrayList<ListItem> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(<any> animals) {
+    public void setAnimals(ArrayList<ListItem> animals) {
         this.animals = animals;
     }
 
-    public <any> getTools() {
+    public ArrayList<ListItem> getTools() {
         return tools;
     }
 
-    public void setTools(<any> tools) {
+    public void setTools(ArrayList<ListItem> tools) {
         this.tools = tools;
     }
 
-    public ListItem getProvisions() {
+    public ArrayList<ListItem> getProvisions() {
         return provisions;
     }
 
-    public void setProvisions(ListItem provisions) {
+    public void setProvisions(ArrayList<ListItem> provisions) {
         this.provisions = provisions;
     }
+
+
+
+    
+
+    
     
     
 }
