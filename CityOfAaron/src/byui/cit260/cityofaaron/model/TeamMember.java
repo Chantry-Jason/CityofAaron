@@ -11,8 +11,8 @@ import java.io.Serializable;
  */
 public enum TeamMember implements Serializable {
     
-    Jason("Jason", "He is one of the team members of the team.");
-    Ken("Ken", "He is one of the team members of the team.");
+    Jason("Jason", "He is one of the team members of the team."),
+    Ken("Ken", "He is one of the team members of the team."),
     Joshua("Joshua", "He is one of the team members of the team.");
     
     private String name;
