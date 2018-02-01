@@ -5,7 +5,9 @@
  */
 package cityofaaron;
 
+import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.Player;
+import byui.cit260.cityofaaron.model.TeamMember;
 
 /**
  *
@@ -18,12 +20,16 @@ public class CityOfAaron {
      */
     public static void main(String[] args) {
         Player playerOne = new Player();
+         
         
+        //set and get the name from the Player class
         playerOne.setName("Fred Flinstone");
-        
         String playerOneName = playerOne.getName();
-        
         System.out.println("Name = " + playerOneName);
+        
+
+        
+
     }
     
 }
