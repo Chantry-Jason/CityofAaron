@@ -16,7 +16,7 @@ public class Game implements Serializable{
     
     // Class instance variables
 
-    private Map theMap;
+    //private Map theMap;
     private Player thePlayer;
     private CropData cropData;
     private TeamMember[] team ;
@@ -29,13 +29,13 @@ public class Game implements Serializable{
         
     }
 
-    public Map getTheMap() {
-        return theMap;
-    }
+//  public Map getTheMap() {
+//        return theMap;
+//    }
 
-    public void setTheMap(Map theMap) {
-        this.theMap = theMap;
-    }
+//    public void setTheMap(Map theMap) {
+//        this.theMap = theMap;
+//    }
 
     public Player getThePlayer() {
         return thePlayer;
