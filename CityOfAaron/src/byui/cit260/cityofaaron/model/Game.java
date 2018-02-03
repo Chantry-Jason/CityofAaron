@@ -16,7 +16,7 @@ public class Game implements Serializable{
     
     // Class instance variables
 
-    //private Map theMap;
+   //private Map theMap;
     private Player thePlayer;
     private CropData cropData;
     private TeamMember[] team ;
