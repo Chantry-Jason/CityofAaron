@@ -10,7 +10,7 @@ package byui.cit260.cityofaaron.control;
  * @author kenpc
  */
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import acresPlanted
 import wheatInStore
 import tithesPaid
@@ -26,16 +26,20 @@ public class harvestCrops {
     
     public static int harvestCrops ()
             
-            private int cropYield () {
-            if (tithesPaid > 12) { cropYield = randomNum (int min = 2 , int max = 5)
+            // nextInt is normally exclusive of the top value,
+            // so add 1 to make it inclusive
+            //int cropYield = ThreadLocalRandom.current().nextInt(2, 5 + 1);
+            
+            int cropYield () {
+            if (tithesPaid > 12) { cropYield = ThreadLocalRandom.current(2 , 5 + 1)
                 return cropYield;
             }
             
-            if (tithesPaid < 8) { cropYield = randomNum (int min = 1 , int max = 3)
+            if (tithesPaid < 8) { cropYield = ThreadLocalRandom.current(1 , 3 + 1)
                 return cropYield;
             }
             
-            if (tithesPaid >= 9 & <= 12) { cropYield = randomNum (int min = 2 , int max = 4)
+            if (tithesPaid >= 9 & <= 12) { cropYield = ThreadLocalRandom.current(2 , 4 + 1)
                 return cropYield;
             }
             
