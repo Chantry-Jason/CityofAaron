@@ -8,6 +8,7 @@ package byui.cit260.cityofaaron.control;
 import byui.cit260.cityofaaron.model.CropData;
 import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
+ 
 /**
  *
  * @author JChantry, KStrobell, JGregg
@@ -50,40 +51,46 @@ public class CropControl implements Serializable{
     }
 
     
-    public static int harvestCrops () {
+    public static int harvestCrops (CropData cropData) {
             
-            
-    
+                
             // nextInt is normally exclusive of the top value,
             // so add 1 to make it inclusive
             //int cropYield = ThreadLocalRandom.current().nextInt(2, 5 + 1);
             
-            int cropYield;
+            
+            int cropYield = cropData.getCropYield();
+            int tithesPaid = cropData.getOffering();
+            int wheatInStore = cropData.getWheatInStore();
+            int acresPlanted = cropData.getAcresPlanted();
+            
             if (tithesPaid > 12) {
                 cropYield = ThreadLocalRandom.current().nextInt(2 , 5 + 1);
-                return cropYield;
+                
             }
             
             if (tithesPaid < 8) { 
                 cropYield = ThreadLocalRandom.current().nextInt(1 , 3 + 1);
-                return cropYield;
+                
             }
             
             if (tithesPaid >= 9 && tithesPaid <= 12) { 
                 cropYield = ThreadLocalRandom.current().nextInt(2 , 4 + 1);
-                return cropYield;
+                
             }
             
             if (tithesPaid < 0) {
                 return -1;
             }
-        
-            int wheatToHarvest
-            int wheatToHarvest = { acresPlanted * cropYield
-            }
-            int wheatInStore = {wheatInStore + wheatToHarvest
-                    return wheatToHarvest
-                            }
+                    
+            int wheatToHarvest = acresPlanted * cropYield;
+            
+            wheatInStore += wheatToHarvest;
+            cropData.setWheatInStore(wheatInStore);
+            cropData.setCropYield(cropYield);
+            
+            return wheatToHarvest;
+                            
            
     }
     
