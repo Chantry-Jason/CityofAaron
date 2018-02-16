@@ -7,8 +7,8 @@ package byui.cit260.cityofaaron.control;
 
 /**
  *
- * @author kenpc
+ * @author JChantry
  */
-public class feedPeople {
+public class Map {
     
 }

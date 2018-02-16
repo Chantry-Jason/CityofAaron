@@ -7,8 +7,8 @@ package byui.cit260.cityofaaron.control;
 
 /**
  *
- * @author kenpc
+ * @author JChantry
  */
-public class plantCrops {
+public class Game {
     
 }
