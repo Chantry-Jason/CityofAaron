@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 /**
  *
- * @author JChantry
+ * @author JChantry, KStrobell, JGregg
  */
 public class CropControl implements Serializable{
   
@@ -22,12 +22,13 @@ public class CropControl implements Serializable{
     // Returns: the number of acres left after the sale
     // Pre-conditions: acres to sell must be positive
     // and <= acresOwned
+    // Author: Ken, Jason, Josh
     public static int sellLand(int landPrice, int acresToSell, CropData cropData) {
         //if acresToSell < 0, return -1
         if (acresToSell < 0) {
             return -1;
         }
-               
+             
         //if acresToSell  > acresOwned, return -1
         int owned = cropData.getAcresOwned();
         if (acresToSell > owned) {
@@ -51,30 +52,33 @@ public class CropControl implements Serializable{
     
     public static int harvestCrops () {
             
-            Random randomNum = new Random();
+            
     
             // nextInt is normally exclusive of the top value,
             // so add 1 to make it inclusive
             //int cropYield = ThreadLocalRandom.current().nextInt(2, 5 + 1);
             
-            int cropYield () {
-            if (tithesPaid > 12) { cropYield = ThreadLocalRandom.current(2 , 5 + 1)
+            int cropYield;
+            if (tithesPaid > 12) {
+                cropYield = ThreadLocalRandom.current().nextInt(2 , 5 + 1);
                 return cropYield;
             }
             
-            if (tithesPaid < 8) { cropYield = ThreadLocalRandom.current(1 , 3 + 1)
+            if (tithesPaid < 8) { 
+                cropYield = ThreadLocalRandom.current().nextInt(1 , 3 + 1);
                 return cropYield;
             }
             
-            if (tithesPaid >= 9 & <= 12) { cropYield = ThreadLocalRandom.current(2 , 4 + 1)
+            if (tithesPaid >= 9 && tithesPaid <= 12) { 
+                cropYield = ThreadLocalRandom.current().nextInt(2 , 4 + 1);
                 return cropYield;
             }
             
-            if (tithesPaid < 0) { )
+            if (tithesPaid < 0) {
                 return -1;
             }
-    }    
-            private int wheatToHarvest ()
+        
+            int wheatToHarvest
             int wheatToHarvest = { acresPlanted * cropYield
             }
             int wheatInStore = {wheatInStore + wheatToHarvest
