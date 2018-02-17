@@ -193,6 +193,57 @@ public class CropControlTest {
         if (cropYield == 3) {expResult = 15;}        
         assertEquals(expResult, result);
 
+        /*
+        //Test Case 3 Invalid does not work well with random number generators********************************************
+        System.out.println("harvestCrops Test Case 3 Invalid");
+        theCrops.setOffering(0);
+        theCrops.setWheatInStore(2000);
+        theCrops.setAcresPlanted(0);
+        //Run the method
+        result = CropControl.harvestCrops(theCrops);
+        
+        //Account for random numbers generated. Read in cropYield and set expResult
+        //for each random possibility.
+        cropYield = theCrops.getCropYield();
+        System.out.println("get cropYield: " + cropYield);
+        if (cropYield == 0) {expResult = 0;}       
+        assertEquals(expResult, result);
+        */
+        
+        //Test Case 4 boundary ********************************************
+        System.out.println("harvestCrops Test Case 4");
+        theCrops.setOffering(1);
+        theCrops.setWheatInStore(2000);
+        theCrops.setAcresPlanted(10);
+        //Run the method
+        result = CropControl.harvestCrops(theCrops);
+        
+        //Account for random numbers generated. Read in cropYield and set expResult
+        //for each random possibility.
+        cropYield = theCrops.getCropYield();
+        System.out.println("get cropYield: " + cropYield);
+        if (cropYield == 1) {expResult = 10;}
+        if (cropYield == 2) {expResult = 20;}
+        if (cropYield == 3) {expResult = 30;}        
+        assertEquals(expResult, result);
+        
+        //Test Case 5 boundary ********************************************
+        System.out.println("harvestCrops Test Case 5");
+        theCrops.setOffering(15);
+        theCrops.setWheatInStore(2000);
+        theCrops.setAcresPlanted(20);
+        //Run the method
+        result = CropControl.harvestCrops(theCrops);
+        
+        //Account for random numbers generated. Read in cropYield and set expResult
+        //for each random possibility.
+        cropYield = theCrops.getCropYield();
+        System.out.println("get cropYield: " + cropYield);
+        if (cropYield == 2) {expResult = 40;}
+        if (cropYield == 3) {expResult = 60;}
+        if (cropYield == 4) {expResult = 80;}        
+        assertEquals(expResult, result);
+        
     }
 
 
