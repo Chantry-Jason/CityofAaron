@@ -94,4 +94,43 @@ public class CropControl implements Serializable{
            
     }
     
+    // The feedPeople method
+    // Purpose: To set aside wheat to feed the people
+    // Parameters: number of bushels to set aside for food
+    // Returns: number of bushels remaining in the store
+    // Pre-conditions: number of bushels to set aside must be positive. 
+    // and must have enough wheat in the store to fill the requested amount of food.
+    // Author: Jason Chantry
+
+    public static int feedPeople (int amountToFeedPeople, CropData cropData) {
+                      
+        //Get wheatInStore
+        int wheatInStore = cropData.getWheatInStore();
+        
+        //If amountToFeedPeople < 0 return -1
+        //-1 means that the amount requested to feed the people is a negative
+        //(invalid) number. Try again.
+        if (amountToFeedPeople < 0) {
+            return -1;
+        }
+        
+        //If amountToFeedPeople > wheatInStore return -2
+        //-2 will tell main program that there is not enough wheat in the store
+        //to fill the request. Try again.
+        if (amountToFeedPeople > wheatInStore) {
+            return -2; //-2 will tell main program that there is not enough
+        }
+
+        //set wheatInStore = wheatInStore – amountToFeedPeople
+        wheatInStore -= amountToFeedPeople;
+        cropData.setWheatInStore(wheatInStore);
+        
+        //set wheatToFeedPeople = amountToFeedPeople
+        cropData.setWheatForPeople(amountToFeedPeople);
+        
+        //return wheatInStore
+        return wheatInStore;
+
+    }
+    
 }
