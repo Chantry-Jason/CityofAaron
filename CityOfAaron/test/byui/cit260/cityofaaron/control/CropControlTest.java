@@ -194,11 +194,11 @@ public class CropControlTest {
         assertEquals(expResult, result);
 
         /*
-        //Test Case 3 Invalid does not work well with random number generators********************************************
+        //Test Case 3 Invalid does not work well with random number generators, works every 1 in 2********************************************
         System.out.println("harvestCrops Test Case 3 Invalid");
-        theCrops.setOffering(0);
+        theCrops.setOffering(-1);
         theCrops.setWheatInStore(2000);
-        theCrops.setAcresPlanted(0);
+        theCrops.setAcresPlanted(200);
         //Run the method
         result = CropControl.harvestCrops(theCrops);
         
@@ -206,12 +206,12 @@ public class CropControlTest {
         //for each random possibility.
         cropYield = theCrops.getCropYield();
         System.out.println("get cropYield: " + cropYield);
-        if (cropYield == 0) {expResult = 0;}       
+        expResult = -1;       
         assertEquals(expResult, result);
         */
         
         //Test Case 4 boundary ********************************************
-        System.out.println("harvestCrops Test Case 4");
+        System.out.println("harvestCrops Test Case 4 boundary");
         theCrops.setOffering(1);
         theCrops.setWheatInStore(2000);
         theCrops.setAcresPlanted(10);
@@ -228,7 +228,7 @@ public class CropControlTest {
         assertEquals(expResult, result);
         
         //Test Case 5 boundary ********************************************
-        System.out.println("harvestCrops Test Case 5");
+        System.out.println("harvestCrops Test Case 5 boundary");
         theCrops.setOffering(15);
         theCrops.setWheatInStore(2000);
         theCrops.setAcresPlanted(20);
