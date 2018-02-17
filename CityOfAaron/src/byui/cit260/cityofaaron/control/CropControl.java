@@ -7,7 +7,8 @@ package byui.cit260.cityofaaron.control;
 
 import byui.cit260.cityofaaron.model.CropData;
 import java.io.Serializable;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
+
  
 /**
  *
@@ -58,31 +59,39 @@ public class CropControl implements Serializable{
             // so add 1 to make it inclusive
             //int cropYield = ThreadLocalRandom.current().nextInt(2, 5 + 1);
             
+            Random random = new Random();
             
-            int cropYield = cropData.getCropYield();
             int tithesPaid = cropData.getOffering();
             int wheatInStore = cropData.getWheatInStore();
             int acresPlanted = cropData.getAcresPlanted();
-            
+            int TITHING_BASE = 0;
+            int TITHING_RANGE = 0;
+            //2-5 random
             if (tithesPaid > 12) {
-                cropYield = ThreadLocalRandom.current().nextInt(2 , 5 + 1);
+                TITHING_BASE = 2;
+                TITHING_RANGE = 4;
+                //System.out.println("Tithes > 12");
                 
             }
-            
+            //1-3 random
             if (tithesPaid < 8) { 
-                cropYield = ThreadLocalRandom.current().nextInt(1 , 3 + 1);
-                
+                TITHING_BASE = 1;
+                TITHING_RANGE = 3;                
+                //System.out.println("Tithes <8");
             }
             
+            //2-4
             if (tithesPaid >= 9 && tithesPaid <= 12) { 
-                cropYield = ThreadLocalRandom.current().nextInt(2 , 4 + 1);
-                
+                TITHING_BASE = 2;
+                TITHING_RANGE = 3;                
+                //System.out.println("Tithes >=9 <=12");
             }
             
             if (tithesPaid < 0) {
                 return -1;
             }
-                    
+            int cropYield = random.nextInt(TITHING_RANGE)+ TITHING_BASE; 
+            //System.out.println("CropYield: " + cropYield);
             int wheatToHarvest = acresPlanted * cropYield;
             
             wheatInStore += wheatToHarvest;

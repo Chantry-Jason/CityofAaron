@@ -153,17 +153,47 @@ public class CropControlTest {
 
     /**
      * Test of harvestCrops method, of class CropControl.
-     
+     */
     @Test
     public void testHarvestCrops() {
-        System.out.println("harvestCrops");
-        CropData cropData = null;
         int expResult = 0;
-        int result = CropControl.harvestCrops(cropData);
+        //Test Case 1 ********************************************
+        System.out.println("harvestCrops Test Case 1");
+        CropData theCrops = new CropData();
+        theCrops.setOffering(12);
+        theCrops.setWheatInStore(2000);
+        theCrops.setAcresPlanted(20);
+        //Run the method
+        int result = CropControl.harvestCrops(theCrops);
+        
+        //Account for random numbers generated. Read in cropYield and set expResult
+        //for each random possibility.
+        int cropYield = theCrops.getCropYield();
+        System.out.println("get cropYield: " + cropYield);
+        if (cropYield == 2) {expResult = 40;}
+        if (cropYield == 3) {expResult = 60;}
+        if (cropYield == 4) {expResult = 80;}        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        //Test Case 2 ********************************************
+        System.out.println("harvestCrops Test Case 2");
+        theCrops.setOffering(5);
+        theCrops.setWheatInStore(2500);
+        theCrops.setAcresPlanted(5);
+        //Run the method
+        result = CropControl.harvestCrops(theCrops);
+        
+        //Account for random numbers generated. Read in cropYield and set expResult
+        //for each random possibility.
+        cropYield = theCrops.getCropYield();
+        System.out.println("get cropYield: " + cropYield);
+        if (cropYield == 1) {expResult = 5;}
+        if (cropYield == 2) {expResult = 10;}
+        if (cropYield == 3) {expResult = 15;}        
+        assertEquals(expResult, result);
+
     }
-    * */
+
+
     
 }
