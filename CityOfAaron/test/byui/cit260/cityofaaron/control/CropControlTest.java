@@ -153,7 +153,7 @@ public class CropControlTest {
     }
 
     /**
-     * Test of harvestCrops method, of class CropControl.
+     * Test of harvestCrops method, of class CropControl. Author: Ken Strobell
      */
     @Test
     public void testHarvestCrops() {
