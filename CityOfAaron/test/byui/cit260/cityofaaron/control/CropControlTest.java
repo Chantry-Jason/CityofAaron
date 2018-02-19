@@ -290,6 +290,58 @@ public class CropControlTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * Test of buyLand method, of class CropControl.
+     */
+    @Test
+    public void testBuyLand() {
+        System.out.println("buyLand: Case 1");
+        CropData theCrops = new CropData();
+        theCrops.setWheatInStore(1000);
+        theCrops.setAcresOwned(500);
+        int price = 10;
+        int acresToBuy = 50;
+        int expResult = 550;
+        int result = CropControl.buyLand(price, acresToBuy, theCrops);
+        assertEquals(expResult, result);
+
+        System.out.println("buyLand: Case 2");
+        theCrops.setWheatInStore(1000);
+        theCrops.setAcresOwned(500);
+        price = 10;
+        acresToBuy = 101;
+        expResult = -1;
+        result = CropControl.buyLand(price, acresToBuy, theCrops);
+        assertEquals(expResult, result);
+        
+        System.out.println("buyLand: Case 3");
+        theCrops.setWheatInStore(1000);
+        theCrops.setAcresOwned(500);
+        price = 10;
+        acresToBuy = -2;
+        expResult = -1;
+        result = CropControl.buyLand(price, acresToBuy, theCrops);
+        assertEquals(expResult, result);
+        
+        System.out.println("buyLand: Case 4");
+        theCrops.setWheatInStore(1000);
+        theCrops.setAcresOwned(500);
+        price = 10;
+        acresToBuy = 100;
+        expResult = 600;
+        result = CropControl.buyLand(price, acresToBuy, theCrops);
+        assertEquals(expResult, result);
+
+        System.out.println("buyLand: Case 5");
+        theCrops.setWheatInStore(1000);
+        theCrops.setAcresOwned(500);
+        price = 10;
+        acresToBuy = 0;
+        expResult = 500;
+        result = CropControl.buyLand(price, acresToBuy, theCrops);
+        assertEquals(expResult, result);
+    }
+
 
     
 }

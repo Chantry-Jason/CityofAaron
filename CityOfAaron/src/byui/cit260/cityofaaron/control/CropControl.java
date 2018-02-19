@@ -16,7 +16,36 @@ import java.util.Random;
  */
 public class CropControl implements Serializable{
   
-    
+    // The buyLand method
+    // Purpose: To buy land
+    // Parameters: the price of land and the number of acres to buy
+    // Returns: the number of acres after the purchase
+    // Pre-conditions: acres to buy must be positive or zero
+    // and cost must be <= current coin
+    public static int buyLand(int price, int acresToBuy, CropData cropData) {
+        
+        //get wheat in store, and acres owned
+        int wheatInStore = cropData.getWheatInStore();
+        int acresOwned = cropData.getAcresOwned();
+        //if acresToBuy < 0, return -1
+        if (acresToBuy < 0) {
+            return -1;
+        }
+        //if (acresToBuy * landPrice) > wheatInStore,  return -1
+        if ((acresToBuy * price) > wheatInStore) {
+            return -1;
+        }
+        //acresOwned = acresOwned + acresToBuy
+        acresOwned += acresToBuy;
+        cropData.setAcresOwned(acresOwned);
+        //wheatInStore = wheatInStore - (acresToBuy x landPrice)
+        wheatInStore -= (acresToBuy * price);
+        cropData.setWheatInStore(wheatInStore);
+        //return acresOwned
+        return acresOwned;
+
+    }
+
     
     // The sellLand method
     // Purpose: To sell land
