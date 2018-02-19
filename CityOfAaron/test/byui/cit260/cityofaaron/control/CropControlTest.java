@@ -241,9 +241,53 @@ public class CropControlTest {
         System.out.println("get cropYield: " + cropYield);
         if (cropYield == 2) {expResult = 40;}
         if (cropYield == 3) {expResult = 60;}
-        if (cropYield == 4) {expResult = 80;}        
+        if (cropYield == 4) {expResult = 80;}  
+        if (cropYield == 5) {expResult = 100;}
         assertEquals(expResult, result);
         
+    }
+
+    /**
+     * Test of payOffering method, of class CropControl.
+     * Author: Jason Chantry
+     */
+    @Test
+    public void testPayOffering() {
+        System.out.println("payOffering Test Case 1");
+        CropData theCrops = new CropData();
+        theCrops.setWheatInStore(1000);
+        theCrops.setHarvest(200);
+        int expResult = 20;
+        int result = CropControl.payOffering(10, theCrops);
+        assertEquals(expResult, result);
+        
+        System.out.println("payOffering Test Case 2");
+        theCrops.setWheatInStore(1000);
+        theCrops.setHarvest(400);
+        expResult = -1;
+        result = CropControl.payOffering(-10, theCrops);
+        assertEquals(expResult, result);
+        
+        System.out.println("payOffering Test Case 3");
+        theCrops.setWheatInStore(1000);
+        theCrops.setHarvest(200);
+        expResult = -1;
+        result = CropControl.payOffering(115, theCrops);
+        assertEquals(expResult, result);
+        
+        System.out.println("payOffering Test Case 4");
+        theCrops.setWheatInStore(1000);
+        theCrops.setHarvest(300);
+        expResult = 0;
+        result = CropControl.payOffering(0, theCrops);
+        assertEquals(expResult, result);
+        
+        System.out.println("payOffering Test Case 5");
+        theCrops.setWheatInStore(1000);
+        theCrops.setHarvest(300);
+        expResult = 300;
+        result = CropControl.payOffering(100, theCrops);
+        assertEquals(expResult, result);
     }
 
 

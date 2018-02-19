@@ -97,6 +97,7 @@ public class CropControl implements Serializable{
             wheatInStore += wheatToHarvest;
             cropData.setWheatInStore(wheatInStore);
             cropData.setCropYield(cropYield);
+            cropData.setHarvest(wheatToHarvest); //added to update harvest variable. JEC
             
             return wheatToHarvest;
                             
@@ -141,5 +142,51 @@ public class CropControl implements Serializable{
         return wheatInStore;
 
     }
+   
     
+    // The payOffering method
+    // Purpose: To set aside how much tithing will be paid, subtract from wheat 
+    //          harvested and save offering percentage.
+    // Parameters: percentage of wheat harvested
+    // Returns: percentage of tithes paid
+    // Pre-conditions: percentage must be >= 0 and <= 100% 
+    //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
+    // Author: Jason Chantry
+   public static int payOffering (int percentOffering, CropData cropData) {
+       //check that user input is not <0 and >100 percent
+       if (percentOffering < 0 || percentOffering >100) {
+           return -1;
+       }
+       //save the Offering entered by user in cropData.Offering
+       cropData.setOffering(percentOffering);
+       //System.out.println("%Offering: " + percentOffering);
+       //Calculate the bushels of wheat paid for offerings based on user percentage input
+       //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
+       int wheatInStore = cropData.getWheatInStore();
+       //System.out.println("WheatInStore: " + wheatInStore);
+       int harvest = cropData.getHarvest();
+       //System.out.println("Harvest: " + harvest);
+       
+        //amount of wheat in tithes = harvest * (percentOffering / 100)
+        //account for 0 by setting to 0 and only doing division if offering
+        //is greater then 0
+        double amtWheatForTithes = 0;
+       if (percentOffering > 0) {
+           amtWheatForTithes = harvest * ((double)percentOffering/100);
+       } 
+       
+       //System.out.println("AmountWheatForTithes: " + amtWheatForTithes);
+       int amtIntWheatForTithes = (int) Math.round(amtWheatForTithes);
+       //System.out.println("AmountIntWheatForTithes: " + amtIntWheatForTithes);
+       //Update HarvestAfterOffering = harvest - amtWheatForTithes
+       cropData.setHarvestAfterOffering(harvest - amtIntWheatForTithes);
+       //Update WheatInStore to add HarvestAfterOffering
+       cropData.setWheatInStore(wheatInStore + (harvest - amtIntWheatForTithes));
+       //No spec for what to return. For now return Harvest amount after tithes
+       return amtIntWheatForTithes;
+       
+       
+       
+       
+   }
 }
