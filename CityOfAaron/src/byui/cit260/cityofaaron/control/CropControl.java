@@ -22,6 +22,7 @@ public class CropControl implements Serializable{
     // Returns: the number of acres after the purchase
     // Pre-conditions: acres to buy must be positive or zero
     // and cost must be <= current coin
+    // Author: JChantry
     public static int buyLand(int price, int acresToBuy, CropData cropData) {
         
         //get wheat in store, and acres owned
