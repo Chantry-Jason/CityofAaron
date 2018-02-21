@@ -125,7 +125,26 @@ public class MainMenuView implements Serializable{
     // ===================================     
     public void startNewGame()
     {
-        System.out.println("\nStart new game option selected.");
+        //Create a new Game object.
+        Game theGame = new Game();
+        // Save a reference to it in the model.Game class.
+        Game.setCurrentGame(theGame);
+        // Display the Banner Page.
+        System.out.println("\nWelcome to the city of Aaron.");
+        // Create a new Player object
+        Player thePlayer = new Player();
+        // Prompt for and get the user’s name.
+        String name;
+        System.out.println("\nPlease type your first name: ");
+        name = keyboard.next();
+        // Save the user’s name in the Player object
+        thePlayer.setName(name);
+        // Save a reference to the player object in the Game object
+        theGame.setThePlayer(thePlayer);
+        // Display a welcome message
+        System.out.println("\nWelcome " + name + " have fun!!");
+        // Display the Game menu
+ 
     }
     
     

@@ -10,12 +10,14 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.ArrayList;
 import byui.cit260.cityofaaron.view.*;
+
+
 /**
  *
  * @author JChantry
  */
 public class Game implements Serializable{
-    
+
     // Class instance variables
 
    //private Map theMap;
@@ -26,14 +28,33 @@ public class Game implements Serializable{
     private ArrayList<ListItem> tools;
     private ArrayList<ListItem> provisions;
     
+
+        //Variables****************
+    //-mygame: Game
+    //errorLog: PrintWriter
+    private static Game theGame = null;
+    
     //Main Function - entry point for the program
     //runs the main menu
     public static void main(String[] args) 
     {
         MainMenuView mmv = new MainMenuView();
         mmv.displayMenuView();       
+    }    
+  
+    public static void setCurrentGame(Game game){
+
     }
-    
+    public Game getC1urrentGame(){
+        return null;
+    }
+/*  public static void setErrorLog(PrintWriter printWriter){
+
+    }
+    public PrintWriter getErrorLog(){
+
+    }
+*/
     //Constructor
     public Game() {
 
