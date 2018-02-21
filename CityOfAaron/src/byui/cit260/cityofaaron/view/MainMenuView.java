@@ -6,6 +6,7 @@
 
 package byui.cit260.cityofaaron.view;
 import java.util.Scanner;
+
 import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.Player;
 import java.io.Serializable;
@@ -20,12 +21,13 @@ import java.io.Serializable;
 public class MainMenuView implements Serializable{
     private String mainMenu; //text of the menu
     private int max; //number of items in the menu
+    Scanner keyboard = new Scanner(System.in);  
     //Constructor
     public MainMenuView() {
 
 
     
-        Scanner keyboard = new Scanner(System.in);    
+  
         mainMenu = "\n" +
             "**********************************\n" +
             "* CITY OF AARON: MAIN GAME MENU  *\n" +
@@ -39,9 +41,9 @@ public class MainMenuView implements Serializable{
 
 
 
+    }
 
-
-}
+    
     // The displayMenuView method
     // Purpose: displays the menu, gets the user's input, and does the 
     //               selected action
@@ -107,7 +109,7 @@ public class MainMenuView implements Serializable{
                 displayHelpMenuView();
                 break;
             case 4: // save game
-                displaySavedGameView();
+                displaySaveGameView();
                 break;
             case 5: // quit game 
                 System.out.println("Thanks for playing ... goodbye.");
@@ -125,8 +127,36 @@ public class MainMenuView implements Serializable{
     {
         System.out.println("\nStart new game option selected.");
     }
-    //////////////PAGE 48
     
-  
+    
+    // The startSavedGame method
+    // Purpose: save the current game
+    // Parameters: none
+    // Returns: none
+    // ===================================     
+    public void startSavedGame()
+    {
+        System.out.println("\nSave game option selected.");
+    }
+    
+    // The display Help menu method
+    // Purpose: display the help menu
+    // Parameters: none
+    // Returns: none
+    // ===================================     
+    public void displayHelpMenuView()
+    {
+        System.out.println("\nHelp Menu View option selected.");
+    }
+    
+    // The display saved game method
+    // Purpose: to load and display a saved game from the disk
+    // Parameters: none
+    // Returns: none
+    // ===================================     
+    public void displaySaveGameView()
+    {
+        System.out.println("\nDisplay Save Game View option selected.");
+    }
 
 }
