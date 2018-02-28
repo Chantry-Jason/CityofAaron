@@ -107,7 +107,7 @@ public class CropView {
     public static void feedPeopleView()
     {
         // Feed People for this round.
-        int wheatInStore = theCropData.getwheatInStore();
+        int wheatInStore = theCropData.getWheatInStore();
 
         // Feed your people
         System.out.format("Feeding your people will cost %d of your wheat in store.%n",feed);
@@ -118,7 +118,7 @@ public class CropView {
         toFeed = keyboard.nextInt();
 
         // Call the sellLand( ) method in the control layer to sell the land
-        int wheatInStore = CropControl.feedPeople(population, feedPeople, theCropData);
+        wheatInStore = CropControl.feedPeople(population, feedPeople, theCropData);
         
         //error handling. If return is -1 then ask again.
         if (wheatInStore == -1) {

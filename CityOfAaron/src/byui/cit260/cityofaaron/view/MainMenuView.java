@@ -167,6 +167,8 @@ public class MainMenuView implements Serializable{
         // Display a welcome message
         System.out.println("\nWelcome " + name + " have fun!!");
         // Display the Game menu
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayGameView();
         
 
 
