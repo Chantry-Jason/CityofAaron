@@ -130,6 +130,7 @@ public class CropControl implements Serializable{
             cropData.setHarvest(wheatToHarvest); //added to update harvest variable. JEC
             
             return wheatToHarvest;
+    }
          
             // The calcEatenByRats Method
             // Purpose: see if rats ate some of your wheat in store.
@@ -150,48 +151,56 @@ public class CropControl implements Serializable{
             
             int RAT_BASE = 100;
             int RAT_RANGE = 1;        
-            
-            int ratProblem = random.nextInt(RAT_BASE) + RAT_RANGE;
-            
-            if (ratProblem < 30 ){
-                wheatInStore =- eatenByRats
-                else system.out.println("/n Nothing Eaten By Rats this Year!");        
-            }
-            
             int tithesPaid = cropData.getOffering();
             int wheatInStore = cropData.getWheatInStore();
             int BUSHELS_BASE = 0;
             int BUSHELS_RANGE = 0;
-            //3-5 random
-            if (tithesPaid > 12) {
-                BUSHELS_BASE = 3;
-                BUSHELS_RANGE = 5;
-                //System.out.println("Tithes > 12");
+            int eatenByRats = 0;
+            
+            int ratProblem = random.nextInt(RAT_BASE) + RAT_RANGE;
+            
+            if (ratProblem < 30 ){
+               //3-5 random
+                if (tithesPaid > 12) {
+                    BUSHELS_BASE = 3;
+                    BUSHELS_RANGE = 5;
+                    //System.out.println("Tithes > 12");
                 
-            }
-            //6-10 random
-            if (tithesPaid < 8) { 
-                BUSHELS_BASE = 6;
-                BUSHELS_RANGE = 10;                
-                //System.out.println("Tithes <8");
-            }
+                }
+                //6-10 random
+                if (tithesPaid < 8) { 
+                    BUSHELS_BASE = 6;
+                    BUSHELS_RANGE = 10;                
+                    //System.out.println("Tithes <8");
+                }
             
-            //3-7
-            if (tithesPaid >= 9 && tithesPaid <= 12) { 
-                BUSHELS_BASE = 3;
-                BUSHELS_RANGE = 7;                
-                //System.out.println("Tithes >=9 <=12");
-            }
+                //3-7
+                if (tithesPaid >= 9 && tithesPaid <= 12) { 
+                    BUSHELS_BASE = 3;
+                    BUSHELS_RANGE = 7;                
+                    //System.out.println("Tithes >=9 <=12");
+                }
             
-            if (tithesPaid < 0) {
-                return -1;
-            }
-            int eatenByRats = random.nextInt(BUSHELS_RANGE)+ BUSHELS_RANGE; 
+                if (tithesPaid < 0) {
+                    return -1;
+                }
+                //**************Calculate
+                eatenByRats = random.nextInt(BUSHELS_RANGE)+ BUSHELS_RANGE; 
+            }else { 
+                System.out.println("/n Nothing Eaten By Rats this Year!");
+                
+                
+            }        
+            
+            
+            
+            
             //System.out.println("CropYield: " + cropYield);
             //How do I get it to remove a percentage of wheatInStore?
             wheatInStore =- eatenByRats;
             
             cropData.setWheatInStore(wheatInStore);
+            cropData.setEatenByRats(eatenByRats);
            
         
             return wheatInStore;
