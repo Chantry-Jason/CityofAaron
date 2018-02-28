@@ -5,6 +5,7 @@
 //-------------------------------------------------------------
 
 package byui.cit260.cityofaaron.view;
+import byui.cit260.cityofaaron.model.CropData;
 import java.util.Scanner;
 
 import byui.cit260.cityofaaron.model.Game;
@@ -125,10 +126,30 @@ public class MainMenuView implements Serializable{
     // ===================================     
     public void startNewGame()
     {
+
+
         //Create a new Game object.
         Game theGame = new Game();
         // Save a reference to it in the model.Game class.
         Game.setCurrentGame(theGame);
+        // Create the CropData object, 
+        // initialize it and save a reference to it in the Game
+        CropData theCrops = new CropData();
+        theCrops.setYear(0);
+        theCrops.setPopulation(100);
+        theCrops.setNewPeople(5);
+        theCrops.setCropYield(3);
+        theCrops.setNumberWhoDied(0);
+        theCrops.setOffering(10);
+        theCrops.setWheatInStore(2700);
+        theCrops.setAcresOwned(1000);
+        theCrops.setAcresPlanted(1000);
+        theCrops.setHarvest(3000);
+        theCrops.setOfferingBushels(300);
+        theCrops.setAcresPlanted(1000); 
+        
+        theGame.setCropData(theCrops);
+        
         // Display the Banner Page.
         System.out.println("\nWelcome to the city of Aaron.");
         // Create a new Player object
@@ -144,7 +165,11 @@ public class MainMenuView implements Serializable{
         // Display a welcome message
         System.out.println("\nWelcome " + name + " have fun!!");
         // Display the Game menu
- 
+        
+
+
+
+
     }
     
     

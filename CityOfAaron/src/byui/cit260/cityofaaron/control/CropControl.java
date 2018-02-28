@@ -219,4 +219,22 @@ public class CropControl implements Serializable{
        
        
    }
+   
+   // calcLandCost() method
+    // Purpose: Calculate a random land cost between 17 and 26 bushels/acre
+    // Parameters: none
+    // Returns: the land cost
+   //Author: Jason
+    public static int calcLandCost(CropData cropData) {
+        Random random = new Random();
+        
+        int LAND_BASE = 17;
+        int LAND_RANGE = 10;
+        
+        int landPrice = random.nextInt(LAND_RANGE) + LAND_BASE;
+        //Save the cost of land for this round to be referenced.
+        cropData.setCostOfLandThisRound(landPrice);
+        return landPrice;            
+    }
+
 }

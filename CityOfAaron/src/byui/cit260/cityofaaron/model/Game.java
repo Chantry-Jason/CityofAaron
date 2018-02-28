@@ -33,7 +33,8 @@ public class Game implements Serializable{
     //-mygame: Game
     //errorLog: PrintWriter
     private static Game theGame = null;
-    
+    private CropData theCrops = null;
+
     //Main Function - entry point for the program
     //runs the main menu
     public static void main(String[] args) 
@@ -42,12 +43,7 @@ public class Game implements Serializable{
         mmv.displayMenuView();       
     }    
   
-    public static void setCurrentGame(Game game){
 
-    }
-    public Game getC1urrentGame(){
-        return null;
-    }
 /*  public static void setErrorLog(PrintWriter printWriter){
 
     }
@@ -56,9 +52,9 @@ public class Game implements Serializable{
     }
 */
     //Constructor
-    public Game() {
+    //public Game() {
 
-    }
+    //}
 
 //  public Map getTheMap() {
 //        return theMap;
@@ -67,7 +63,29 @@ public class Game implements Serializable{
 //    public void setTheMap(Map theMap) {
 //        this.theMap = theMap;
 //    }
-
+    // the getCrops() method
+    // Purpose: get a reference to the crop object
+    // Parameters: none
+    // Returns: a reference to a crop object
+    public CropData getCrop()
+    {
+        return theCrops;
+    }
+    
+    // the setCrops() method
+    // Purpose: store a reference to a crop object
+    // Parameters: a reference to a crop object
+    // Returns: none    
+    public void setCrop(CropData _cropRef)
+    {
+        theCrops = _cropRef;
+    }
+    public static void setCurrentGame(Game game){
+        theGame = game;
+    }
+    public static Game getCurrentGame(){
+        return theGame;
+    }
     public Player getThePlayer() {
         return thePlayer;
     }

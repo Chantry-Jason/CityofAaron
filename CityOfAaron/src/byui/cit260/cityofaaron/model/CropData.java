@@ -29,6 +29,15 @@ public class CropData{
     private int numStarved;
     private int eatenByRats;
     private int wheatForPeople;
+    private int costOfLandThisRound;
+
+    public int getCostOfLandThisRound() {
+        return costOfLandThisRound;
+    }
+
+    public void setCostOfLandThisRound(int costOfLandThisRound) {
+        this.costOfLandThisRound = costOfLandThisRound;
+    }
 
     //getters and setters
     public int getYear() {
