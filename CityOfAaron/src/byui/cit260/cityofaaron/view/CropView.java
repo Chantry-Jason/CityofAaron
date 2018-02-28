@@ -123,8 +123,10 @@ public class CropView implements Serializable{
         
         //error handling. If return is -1 then ask again.
         if (wheatInStore == -1) {
-            //invalid number, ask again. Jump up to top...
-            
+            //number entered is less than 0, ask again. Jump up to top...
+        }
+        if (wheatInStore == -2) {
+            //number endered is more than the total wheat instore, ask again. Jump to top...
         }
 
 
