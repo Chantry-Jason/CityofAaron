@@ -1,2 +1,2 @@
 # CityofAaron
-CIT240 Team Project - Ken, Jason, Joshua
+CIT240 Team Project - Ken Strobell and Jason Chantry
