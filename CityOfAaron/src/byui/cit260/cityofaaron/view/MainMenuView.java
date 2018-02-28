@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.Player;
+import byui.cit260.cityofaaron.view.HelpMenuView;
 import java.io.Serializable;
 
      
@@ -192,6 +193,9 @@ public class MainMenuView implements Serializable{
     public void displayHelpMenuView()
     {
         System.out.println("\nHelp Menu View option selected.");
+        HelpMenuView helpMenu = new HelpMenuView();
+        helpMenu.displayHelpView();
+        
     }
     
     // The display saved game method
