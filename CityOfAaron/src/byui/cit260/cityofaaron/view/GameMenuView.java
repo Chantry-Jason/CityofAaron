@@ -50,7 +50,7 @@ public class GameMenuView implements Serializable{
             // Display the menu
             System.out.println(gameMenu);
             // Prompt the user and get the user’s input
-            gameMenuOption = getHelpMenuOption();
+            gameMenuOption = getGameMenuOption();
             // Perform the desired action
             doAction(gameMenuOption);
             // Determine and display the next view     
