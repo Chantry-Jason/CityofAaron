@@ -104,22 +104,22 @@ public class CropView implements Serializable{
 
     }
     
-    
+    //Author: Ken Strobell
     public static void feedPeopleView()
     {
         // Feed People for this round.
         int wheatInStore = theCropData.getWheatInStore();
 
         // Feed your people
-        System.out.format("Feeding your people will cost %d of your wheat in store.%n",feed);
-        System.out.print("\nAre you sure you want to proceed? "); 
+        //System.out.format("Feeding your people will cost %d of your wheat in store.%n",feed);
+        System.out.print("\nHow many bushels of grain do you want to give to the people? "); 
 
         //  Get the user’s input and save it.
         int toFeed;
         toFeed = keyboard.nextInt();
 
         // Call the sellLand( ) method in the control layer to sell the land
-        wheatInStore = CropControl.feedPeople(population, feedPeople, theCropData);
+        wheatInStore = CropControl.feedPeople(toFeed, theCropData);
         
         //error handling. If return is -1 then ask again.
         if (wheatInStore == -1) {
