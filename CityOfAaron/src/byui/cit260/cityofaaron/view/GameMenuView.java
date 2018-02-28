@@ -17,22 +17,21 @@ public class GameMenuView implements Serializable{
     private int max; //number of items in the menu
     Scanner keyboard = new Scanner(System.in);  
     //Constructor
-    public HelpMenuView() {
+    public GameMenuView() {
 
 
     
   
-        helpMenu = "\n" +
+        gameMenu = "\n" +
             "**********************************\n" +
-            "* CITY OF AARON: HELP MENU  *\n" +
+            "* CITY OF AARON: GAME MENU  *\n" +
             "**********************************\n" +
-            " 1 - What are the goals of the game?\n" +
-            " 2 - Where is the city of Aaron?\n" +
-            " 3 - How do I view the map?\n" +
-            " 4 - How do I move to another location?\n" +
-            " 5 - How do I display a list of animals, provisions and tools in the city storehouse?\n" +
-            " 6 - Back to the Main Menu\n";
-        max = 6;
+            " 1 - View the Map\n" +
+            " 2 - View/Print a List\n" +
+            " 3 - Move to a new location\n" +
+            " 4 - Manage the Crops\n" +
+            " 5 - Return to the Main Menu\n";
+        max = 5;
 
 
 
@@ -45,18 +44,18 @@ public class GameMenuView implements Serializable{
     // Parameters: none
     // Returns: none
     // =========================================================    
-    public void displayHelpView(){
-        int helpMenuOption;
+    public void displayGameView(){
+        int gameMenuOption;
         do {
             // Display the menu
-            System.out.println(helpMenu);
+            System.out.println(gameMenu);
             // Prompt the user and get the user’s input
-            helpMenuOption = getHelpMenuOption();
+            gameMenuOption = getHelpMenuOption();
             // Perform the desired action
-            doAction(helpMenuOption);
+            doAction(gameMenuOption);
             // Determine and display the next view     
             
-        } while (helpMenuOption != max);
+        } while (gameMenuOption != max);
         //How will this go back to display menu?
     }
     
@@ -65,7 +64,7 @@ public class GameMenuView implements Serializable{
     //method.
     //Parameters: None
     //Returns: integer - the option selected
-    public int getHelpMenuOption() {
+    public int getGameMenuOption() {
         // declare a variable to hold user’s input
         int userInput;
         // begin loop
@@ -94,72 +93,60 @@ public class GameMenuView implements Serializable{
     public void doAction(int option)
     {
         switch(option) {
-            case 1: // display goals of the game
-                displayHelpGoalsOfGame();
+            case 1: // display map of the game
+                displayMap();
                 break;
-            case 2: // display where the city of Aaron is
-                displayHelpWhere();
+            case 2: // view or print a list
+                viewprintList();
                 break;
-            case 3: // display how view map
-                displayHelpViewMap();
+            case 3: // move to a new location
+                moveLocation();
                 break;
-            case 4: // display how to move to another location
-                displayHelpMoveLocation();
+            case 4: // Manage the Crops
+                manageCrops();
                 break;
-            case 5: // display animals, provisions, and tools in storehouse
-                displayHelpWhatInStorehouse();
-                break;
-            case 6: // back to main menu
+            case 5: // back to main menu
                 break;
         }
  
 
     
     }
-    // The displayHelpGoalsOfGame method
+    // The displayMap method
     // Purpose: displays the goals of the game
     // Parameters: none
     // Returns: none
     // ===================================   
-    public void displayHelpGoalsOfGame()
+    public void displayMap()
     {
-        System.out.println("\nGoals of the Game was Selected.");
+        System.out.println("\nGame Map was selected.");
     }
-    // The displayHelpWhere method
-    // Purpose: displays where the city of Aaron is loacted
+    // The viewprintList method
+    // Purpose: view a List
     // Parameters: none
     // Returns: none
     // ===================================   
-    public void displayHelpWhere()
+    public void viewprintList()
     {
-        System.out.println("\nWhere is the City of Aaron was Selected.");
+        System.out.println("\nView/Print List was selected.");
     }
-    // The displayHelpViewMap method
-    // Purpose: displays the goals of the game
+    // The moveLocation method
+    // Purpose: moves to another location
     // Parameters: none
     // Returns: none
     // ===================================   
-    public void displayHelpViewMap()
+    public void moveLocation()
     {
-        System.out.println("\nHow do I view the map was Selected.");
+        System.out.println("\nMove to another location was selected.");
     }
-    // The displayHelpMoveLocation method
-    // Purpose: explains how to move to another location
+    // The manageCrops method
+    // Purpose: manage a players crops
     // Parameters: none
     // Returns: none
     // ===================================   
-    public void displayHelpMoveLocation()
+    public void manageCrops()
     {
-        System.out.println("\nHow to move to another location was Selected.");
+        System.out.println("\nManage Crops was selected.");
     }
-    // The displayHelpWhatInStorehouse method
-    // Purpose: shows a list of the animals, provisions, and tools that are in
-    //          the storehouse.
-    // Parameters: none
-    // Returns: none
-    // ===================================   
-    public void displayHelpWhatInStorehouse()
-    {
-        System.out.println("\nList Animals, Provisions, and Tools was Selected.");
-    }
+    
 }
