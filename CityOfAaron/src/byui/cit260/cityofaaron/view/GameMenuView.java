@@ -7,7 +7,7 @@ package byui.cit260.cityofaaron.view;
 
 /**
  *
- * @author JChantry
+ * @author KStrobell
  */
 public class GameMenuView {
     

@@ -114,6 +114,7 @@ public class MainMenuView implements Serializable{
                 break;
             case 5: // quit game 
                 System.out.println("Thanks for playing ... goodbye.");
+                System.exit(0);
         }
  
 
