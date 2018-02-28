@@ -8,6 +8,7 @@ import byui.cit260.cityofaaron.model.*;
 import byui.cit260.cityofaaron.control.*;
 import java.util.Scanner;
 import byui.cit260.cityofaaron.model.Game;
+import java.io.Serializable;
 
 
 
@@ -15,7 +16,7 @@ import byui.cit260.cityofaaron.model.Game;
  *
  * @author JChantry
  */
-public class CropView {
+public class CropView implements Serializable{
     // Create a Scanner object
     private static Scanner keyboard = new Scanner(System.in);   
      
@@ -27,7 +28,7 @@ public class CropView {
     // Purpose: runs the Hamurabi game
     // Parameters: none
     // Returns: none
-    public static void runCropsView()
+    public void runCropsView()
     {
         // call the buyLandView( ) method
         buyLandView();

@@ -147,6 +147,8 @@ public class GameMenuView implements Serializable{
     public void manageCrops()
     {
         System.out.println("\nManage Crops was selected.");
+        CropView cropView = new CropView();
+        cropView.runCropsView();
     }
     
 }
