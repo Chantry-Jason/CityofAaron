@@ -10,7 +10,7 @@ import java.io.Serializable;
  *
  * @author kenpc
  */
-public class CropData{
+public class CropData implements Serializable{
     
     // CropData integers 
     private int year; 
