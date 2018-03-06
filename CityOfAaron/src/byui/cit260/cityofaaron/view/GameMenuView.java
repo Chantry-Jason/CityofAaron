@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author KStrobell
  */
-public class GameMenuView implements Serializable{
+public class GameMenuView extends MenuView implements Serializable{
     private String gameMenu; //text of the menu
     private int max; //number of items in the menu
     Scanner keyboard = new Scanner(System.in);  
@@ -22,7 +22,7 @@ public class GameMenuView implements Serializable{
 
     
   
-        gameMenu = "\n" +
+        super( "\n" +
             "**********************************\n" +
             "* CITY OF AARON: GAME MENU  *\n" +
             "**********************************\n" +
@@ -30,67 +30,22 @@ public class GameMenuView implements Serializable{
             " 2 - View/Print a List\n" +
             " 3 - Move to a new location\n" +
             " 4 - Manage the Crops\n" +
-            " 5 - Return to the Main Menu\n";
-        max = 5;
+            " 5 - Return to the Main Menu\n",
+        5);
 
 
 
     }
 
     
-    // The displayHelpView method
-    // Purpose: displays the helpmenu, gets the user's input, and does the 
-    //               selected action
-    // Parameters: none
-    // Returns: none
-    // =========================================================    
-    public void displayGameView(){
-        int gameMenuOption;
-        do {
-            // Display the menu
-            System.out.println(gameMenu);
-            // Prompt the user and get the user’s input
-            gameMenuOption = getGameMenuOption();
-            // Perform the desired action
-            doAction(gameMenuOption);
-            // Determine and display the next view     
-            
-        } while (gameMenuOption != max);
-        //How will this go back to display menu?
-    }
-    
-    //Purpose: method gets a value from the user, makes sure that it
-    //is valid, and if it is, returns that value to the calling
-    //method.
-    //Parameters: None
-    //Returns: integer - the option selected
-    public int getGameMenuOption() {
-        // declare a variable to hold user’s input
-        int userInput;
-        // begin loop
-        do
-        {
-            // get user input from the keyboard
-            userInput = keyboard.nextInt();
-            // if it is not a valid value, output an error message
-            if(userInput < 1 || userInput > max)
-            {
-                System.out.println("\noption must be between 1 and " + max);
-            }
-        // loop back to the top if input was not valid
-                 
-        } while(userInput < 1 || userInput > max);
-        // return the value input by the user  
-        return userInput;
-
-    }
+ 
     
     // The doAction method
     // Purpose: performs the selected action
     // Parameters: none
     // Returns: none
     // ===================================       
-    public void doAction(int option)
+    @Override public void doAction(int option)
     {
         switch(option) {
             case 1: // display map of the game
