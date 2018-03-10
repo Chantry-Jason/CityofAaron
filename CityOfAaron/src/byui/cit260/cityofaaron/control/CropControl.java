@@ -16,6 +16,15 @@ import java.util.Random;
  */
 public class CropControl implements Serializable{
   
+    //Set Static variables
+    public static int ACRES_PER_BUSHEL = 2;     //2 acres cost 1 bushel of wheat
+    public static int PEOPLE_PER_ACRE = 10;     //1 person can take care of 10 acres
+    public static int BUSHELS_PER_PERSON = 20;  //20 bushels of wheat to feed 1 person
+    
+    
+            
+    
+    
     // The buyLand method
     // Purpose: To buy land
     // Parameters: the price of land and the number of acres to buy
@@ -28,13 +37,20 @@ public class CropControl implements Serializable{
         //get wheat in store, and acres owned
         int wheatInStore = cropData.getWheatInStore();
         int acresOwned = cropData.getAcresOwned();
+        int population = cropData.getPopulation();
         //if acresToBuy < 0, return -1
         if (acresToBuy < 0) {
             return -1;
         }
         //if (acresToBuy * landPrice) > wheatInStore,  return -1
         if ((acresToBuy * price) > wheatInStore) {
-            return -1;
+            //don't have enough wheat to purchase this land
+            return -2;  
+        }
+        //make sure the city has enough people to tend the land.
+        if (((acresToBuy + acresOwned) / PEOPLE_PER_ACRE) > population) {
+            //don't have enough people to tend this much land. 
+            return -3;
         }
         //acresOwned = acresOwned + acresToBuy
         acresOwned += acresToBuy;
@@ -46,7 +62,85 @@ public class CropControl implements Serializable{
         return acresOwned;
 
     }
-
+    // The setOffering method
+    // Purpose: To set the amount of tithes user wants to pay
+    // Parameters: userOffering 
+    // Returns: the percentage the user wants to give to offerings
+    // Pre-conditions: offering must be >= 0 and <=100
+ 
+    // Author: Jason
+    
+    public static int setOffering(int userOffering, CropData cropData) {
+        //check pre-conditions
+        if ((userOffering < 0) || (userOffering > 100)) {
+            return -1;          //offering invalid
+        }
+        //save the Offering entered by user in cropData.Offering
+        cropData.setOffering(userOffering);
+        return userOffering;
+    }
+    
+    // The payOffering method
+    // Purpose: Reconsile how much tithing the user wanted to pay, calculate
+    //          percentage of wheat harvested, subtract from wheatinstore. Update
+    //          harvest after offering
+    // Parameters: percentage of wheat harvested in double, 0.01
+    // Returns: percentage of tithes paid 
+    // Pre-conditions: percentage must be >= 0 and <= 100% 
+    //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
+    // Author: Jason Chantry
+   public static int payOffering (double percentOffering, CropData cropData) {
+       
+       //Calculate the bushels of wheat paid for offerings based on user percentage input
+       //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
+       int wheatInStore = cropData.getWheatInStore();
+       //System.out.println("WheatInStore: " + wheatInStore);
+       int harvest = cropData.getHarvest();
+       //System.out.println("Harvest: " + harvest);
+       
+        //amount of wheat in tithes = harvest * (percentOffering / 100)
+        //account for 0 by setting to 0 and only doing division if offering
+        //is greater then 0
+       double amtWheatForTithes = 0;
+       if (percentOffering > 0) {
+           amtWheatForTithes = harvest * percentOffering;
+       } 
+       
+       //System.out.println("AmountWheatForTithes: " + amtWheatForTithes);
+       int amtIntWheatForTithes = (int) Math.round(amtWheatForTithes);
+       //System.out.println("AmountIntWheatForTithes: " + amtIntWheatForTithes);
+       //Update HarvestAfterOffering = harvest - amtWheatForTithes
+       cropData.setHarvestAfterOffering(harvest - amtIntWheatForTithes);
+       //Update WheatInStore to add HarvestAfterOffering
+       //cropData.setWheatInStore(wheatInStore + (harvest - amtIntWheatForTithes));
+       //No spec for what to return. For now return Harvest amount after tithes
+       return amtIntWheatForTithes;
+       
+       
+       
+       
+   }
+    
+  // The storeWheat method
+    // Purpose: adds wheat harvested, subtracts wheat after offerings and saves 
+    //          back to store wheat
+    //  
+    // Parameters: none
+    // Returns: wheat in store 
+    // Pre-conditions: none 
+    //Outside variables: HarvestAfterOffering, Harvest, WheatInStore
+    // Author: Jason Chantry
+   public static int storeWheat (CropData cropData) {
+       int wheatInStore = cropData.getWheatInStore();
+       int harvestAfterOffering = cropData.getHarvestAfterOffering();
+       //harvestAfterOffering is wheat Harvested - wheat for offerings. 
+       
+       // add the harvested amount of wheat (after subtracting offerings) to the 
+       // store.
+       int newWheatInStore = wheatInStore + harvestAfterOffering;
+       cropData.setWheatInStore(newWheatInStore);
+       return newWheatInStore;
+   }  
     
     // The sellLand method
     // Purpose: To sell land
@@ -80,7 +174,38 @@ public class CropControl implements Serializable{
 
         
     }
-
+    // The plantCrops method
+    // Purpose: To set aside how many crops to plant
+    // Parameters: how many crops the user wants to plant
+    // Returns: the wheat left in store after planting or -1 for error
+    // Pre-conditions: number of crops must be >=0, and #crops*ACRESPERBUSHEL must
+    //                 be less than wheat we have in store, and #crops to plant  
+    //                 must be <= total crops owned
+    
+    // Author: Jason
+    public static int plantCrops(int userPlantCrops, CropData cropData) {
+        
+        int wheatInStore = cropData.getWheatInStore();
+        int landOwned = cropData.getAcresOwned();
+        if (userPlantCrops < 0) {
+            return -1;      //negative number. Invalid
+        }
+        if ((userPlantCrops * ACRES_PER_BUSHEL) > wheatInStore) {
+            return -2;      //don't have enough wheat in store to plant the requested crops
+        }
+        if (userPlantCrops > landOwned) {
+            //trying to plant more acres than is owned.
+            return -3;
+        }
+        int numBushelsReqToPlant = userPlantCrops * ACRES_PER_BUSHEL;
+        int cropsLeft = wheatInStore - numBushelsReqToPlant;
+        cropData.setWheatInStore(cropsLeft);
+        cropData.setAcresPlanted(userPlantCrops);
+        return cropsLeft;
+        
+    }
+    
+    
     //Author: Ken Strobell
     public static int harvestCrops (CropData cropData) {
             
@@ -124,8 +249,8 @@ public class CropControl implements Serializable{
             //System.out.println("CropYield: " + cropYield);
             int wheatToHarvest = acresPlanted * cropYield;
             
-            wheatInStore += wheatToHarvest;
-            cropData.setWheatInStore(wheatInStore);
+            //wheatInStore += wheatToHarvest;
+            //cropData.setWheatInStore(wheatInStore);
             cropData.setCropYield(cropYield);
             cropData.setHarvest(wheatToHarvest); //added to update harvest variable. JEC
             
@@ -191,10 +316,7 @@ public class CropControl implements Serializable{
                 
                 
             }        
-            
-            
-            
-            
+   
             //System.out.println("CropYield: " + cropYield);
             //How do I get it to remove a percentage of wheatInStore?
             wheatInStore =- eatenByRats;
@@ -249,53 +371,62 @@ public class CropControl implements Serializable{
 
     }
    
-    
-    // The payOffering method
-    // Purpose: To set aside how much tithing will be paid, subtract from wheat 
-    //          harvested and save offering percentage.
-    // Parameters: percentage of wheat harvested
-    // Returns: percentage of tithes paid
-    // Pre-conditions: percentage must be >= 0 and <= 100% 
-    //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
-    // Author: Jason Chantry
-   public static int payOffering (int percentOffering, CropData cropData) {
-       //check that user input is not <0 and >100 percent
-       if (percentOffering < 0 || percentOffering >100) {
-           return -1;
-       }
-       //save the Offering entered by user in cropData.Offering
-       cropData.setOffering(percentOffering);
-       //System.out.println("%Offering: " + percentOffering);
-       //Calculate the bushels of wheat paid for offerings based on user percentage input
-       //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
-       int wheatInStore = cropData.getWheatInStore();
-       //System.out.println("WheatInStore: " + wheatInStore);
-       int harvest = cropData.getHarvest();
-       //System.out.println("Harvest: " + harvest);
-       
-        //amount of wheat in tithes = harvest * (percentOffering / 100)
-        //account for 0 by setting to 0 and only doing division if offering
-        //is greater then 0
-        double amtWheatForTithes = 0;
-       if (percentOffering > 0) {
-           amtWheatForTithes = harvest * ((double)percentOffering/100);
-       } 
-       
-       //System.out.println("AmountWheatForTithes: " + amtWheatForTithes);
-       int amtIntWheatForTithes = (int) Math.round(amtWheatForTithes);
-       //System.out.println("AmountIntWheatForTithes: " + amtIntWheatForTithes);
-       //Update HarvestAfterOffering = harvest - amtWheatForTithes
-       cropData.setHarvestAfterOffering(harvest - amtIntWheatForTithes);
-       //Update WheatInStore to add HarvestAfterOffering
-       cropData.setWheatInStore(wheatInStore + (harvest - amtIntWheatForTithes));
-       //No spec for what to return. For now return Harvest amount after tithes
-       return amtIntWheatForTithes;
-       
-       
-       
-       
-   }
+   // calcStarved() method
+   // Purpose: Calculate how many people were not fed and decrease population
+   // Parameters: int? None. 
+   // Returns: num people starved
+   //Author: Jason
+    public static int calcStarved(CropData cropData) {
+        //100 people will cost 2000 wheat
+        int peopleFed = cropData.getWheatForPeople() / BUSHELS_PER_PERSON;
+        int peopleStarved = 0;
+        if (peopleFed < cropData.getPopulation()) {
+            //Some people Starved.
+            peopleStarved = cropData.getPopulation() - peopleFed;
+            
+        }
+        //Save the number of people that starved this round
+        cropData.setNumStarved(peopleStarved);
+        //Calculate new population. Pop - Starved
+        int newPopulation = cropData.getPopulation() - peopleStarved;
+        cropData.setPopulation(newPopulation);
+        return peopleStarved;
+        
+        
+    }
+ 
    
+   // growPopulation() method
+   // Purpose: Determine how much to grow the population
+   // Parameters: int? None. 
+   // Returns: num people moved into city
+   //Author: Jason
+    public static int growPopulation(CropData cropData) {
+        Random random = new Random();
+        //Set base as 1 and range of 4. This is 1-5%
+        int GROW_BASE = 1;
+        int GROW_RANGE = 4;
+        int population = cropData.getPopulation();
+        
+        //random number between 1 and 5%
+        int randPercent = random.nextInt(GROW_RANGE) + GROW_BASE;
+        //System.out.println("random %: " + randPercent);
+        //convert int to double
+        double randDPercent = randPercent / 100.00;
+        //System.out.println("random %: " + randDPercent);
+        int newPeople = (int) Math.round(population * randDPercent);
+        //System.out.println("new people" + newPeople);
+        
+        cropData.setPopulation(population += newPeople);
+        cropData.setNewPeople(newPeople);
+   
+        //return new people
+        return newPeople;
+
+    
+    
+    }
+    
    // calcLandCost() method
     // Purpose: Calculate a random land cost between 17 and 26 bushels/acre
     // Parameters: none

@@ -258,35 +258,36 @@ public class CropControlTest {
         theCrops.setWheatInStore(1000);
         theCrops.setHarvest(200);
         int expResult = 20;
-        int result = CropControl.payOffering(10, theCrops);
+        int result = CropControl.payOffering(0.10, theCrops);
         assertEquals(expResult, result);
         
-        System.out.println("payOffering Test Case 2");
+        /*System.out.println("payOffering Test Case 2");
         theCrops.setWheatInStore(1000);
         theCrops.setHarvest(400);
         expResult = -1;
-        result = CropControl.payOffering(-10, theCrops);
+        result = CropControl.payOffering(-0.10, theCrops);
         assertEquals(expResult, result);
         
         System.out.println("payOffering Test Case 3");
         theCrops.setWheatInStore(1000);
         theCrops.setHarvest(200);
         expResult = -1;
-        result = CropControl.payOffering(115, theCrops);
+        result = CropControl.payOffering(1.15, theCrops);
         assertEquals(expResult, result);
+        */
         
         System.out.println("payOffering Test Case 4");
         theCrops.setWheatInStore(1000);
         theCrops.setHarvest(300);
         expResult = 0;
-        result = CropControl.payOffering(0, theCrops);
+        result = CropControl.payOffering(0.0, theCrops);
         assertEquals(expResult, result);
         
         System.out.println("payOffering Test Case 5");
         theCrops.setWheatInStore(1000);
         theCrops.setHarvest(300);
         expResult = 300;
-        result = CropControl.payOffering(100, theCrops);
+        result = CropControl.payOffering(1.00, theCrops);
         assertEquals(expResult, result);
     }
 
@@ -300,6 +301,7 @@ public class CropControlTest {
         CropData theCrops = new CropData();
         theCrops.setWheatInStore(1000);
         theCrops.setAcresOwned(500);
+        theCrops.setPopulation(5000);
         int price = 10;
         int acresToBuy = 50;
         int expResult = 550;
@@ -311,7 +313,7 @@ public class CropControlTest {
         theCrops.setAcresOwned(500);
         price = 10;
         acresToBuy = 101;
-        expResult = -1;
+        expResult = -2;
         result = CropControl.buyLand(price, acresToBuy, theCrops);
         assertEquals(expResult, result);
         
@@ -342,6 +344,30 @@ public class CropControlTest {
         result = CropControl.buyLand(price, acresToBuy, theCrops);
         assertEquals(expResult, result);
     }
+
+
+ 
+
+
+    /**
+     * Test of growPopulation method, of class CropControl.
+     * works, didn't do random but looked at step results.
+     
+    @Test
+    public void testGrowPopulation() {
+        CropData theCrops = new CropData();
+        System.out.println("growPopulation 1");
+        theCrops.setPopulation(1000);
+        int newPeople = theCrops.getNewPeople();
+        
+        int expResult = 0;
+        int result = CropControl.growPopulation(theCrops);
+        assertEquals(expResult, result);
+
+    }
+*/
+    
+
 
 
     
