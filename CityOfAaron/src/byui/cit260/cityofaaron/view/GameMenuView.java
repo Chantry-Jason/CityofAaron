@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package byui.cit260.cityofaaron.view;
 
 import java.io.Serializable;
@@ -84,8 +80,8 @@ public class GameMenuView extends MenuView implements Serializable{
     public void viewprintList()
     {
         System.out.println("\nView/Print List was selected.");
-        ListMenuView listMenu = new ListMenuView();
-        listMenu.displayMenu();
+        ListMenuView listMenu = new ListMenuView(); //JChantry
+        listMenu.displayMenu();                     //JChantry
     }
     // The moveLocation method
     // Purpose: moves to another location
