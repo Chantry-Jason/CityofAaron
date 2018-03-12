@@ -84,6 +84,8 @@ public class GameMenuView extends MenuView implements Serializable{
     public void viewprintList()
     {
         System.out.println("\nView/Print List was selected.");
+        ListMenuView listMenu = new ListMenuView();
+        listMenu.displayMenu();
     }
     // The moveLocation method
     // Purpose: moves to another location
