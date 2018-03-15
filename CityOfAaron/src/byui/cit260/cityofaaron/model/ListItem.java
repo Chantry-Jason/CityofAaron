@@ -9,13 +9,18 @@ import java.io.Serializable;
 
 /**
  *
- * @author Joshua Gregg
+ * @author Ken, Jason
  */
 public class ListItem implements Serializable{
     
     //class instance variales
     private String name;
     private int number;
+
+
+    public ListItem(String name, int i) {
+        
+    }
 
     public String getName() {
         return name;

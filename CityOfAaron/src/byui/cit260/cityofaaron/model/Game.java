@@ -10,7 +10,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.ArrayList;
 import byui.cit260.cityofaaron.view.*;
-
+import byui.cit260.cityofaaron.model.Game;
+import byui.cit260.cityofaaron.control.*;
 
 /**
  *
@@ -32,8 +33,10 @@ public class Game implements Serializable{
         //Variables****************
     //-mygame: Game
     //errorLog: PrintWriter
-    private static Game theGame = null;
-    private CropData theCrops = null;
+
+    private static Game theGame;
+    private CropData theCrops;
+    private Map theMap;
 
     //Main Function - entry point for the program
     //runs the main menu
@@ -52,17 +55,17 @@ public class Game implements Serializable{
     }
 */
     //Constructor
-    //public Game() {
+  //  public Game() {
 
-    //}
+  //  }
 
-//  public Map getTheMap() {
-//        return theMap;
-//    }
+    public Map getTheMap() {
+        return theMap;
+    }
 
-//    public void setTheMap(Map theMap) {
-//        this.theMap = theMap;
-//    }
+    public void setTheMap(Map theMap) {
+        this.theMap = theMap;
+    }
     // the getCrops() method
     // Purpose: get a reference to the crop object
     // Parameters: none

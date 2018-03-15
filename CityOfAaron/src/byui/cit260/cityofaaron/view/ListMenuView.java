@@ -24,7 +24,7 @@ public class ListMenuView extends MenuView implements Serializable{
             " 1 - List or View the animals in the storehouse\n" +
             " 2 - List or View the tools in the storehouse\n" +
             " 3 - List or View the provisions in the storehouse\n" +
-            " 4 - List or View the authors of this game\n" +
+            " 4 - List or View the development team\n" +
             " 5 - Return to the Main Menu\n",
         5);
 
