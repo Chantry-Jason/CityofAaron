@@ -134,20 +134,89 @@ public class GameControl implements Serializable{
         //** Hint for Loc 0,2
         // define the string for a farm land location
         String farmland = "\nYou are on the fertile banks of the River." +
-        "\nIn the springthis low farmland floods and is covered with rich" +
+        "\nIn the spring this low farmland floods and is covered with rich" +
         "\nnew soil. Wheat is planted as far as you can see."; 
 
         // set a farmland location with a hint
         loc = new Location();
-        loc.setDescription(farmland + "\nOne bushel will plant two acres of wheat.");
+        loc.setDescription(farmland + "\nHint: One bushel will plant two acres of wheat.");
         loc.setSymbol("!!!");
         theMap.setLocation(0, 2, loc);
     
-       
+        //********************************************************************
+        //** Hint for Loc 2,0
+        // define the string for a farm land location
+        String farmland2 = "\nYou are on farmland with rich soil" +
+        "\nThis farmland is next to the desert so don't plant rice here," +
+        "\nit's too hot! Nothing is currently planted in this field."; 
+
+        // set a farmland location with a hint
+        loc = new Location();
+        loc.setDescription(farmland2 + "\nHint: Twenty bushels of wheat is needed to feed" +
+        "one person.");
+        loc.setSymbol("---");
+        theMap.setLocation(2, 0, loc);  
         
-        
-        
-        
+        //********************************************************************
+        //** Desert  0-1, 0-1
+        // create a string that will go in the Location objects
+        // that contain the Desert
+        String desert = "\nYou are in the Desert. The desert is where criminals" +
+                       "\nare banished. It is sand and bones as far as the eye" +
+                       "\ncan see. The desert is the North West boundary of the map.";
+
+
+
+        // use setters in the Location class to set the description and symbol
+        loc.setDescription(desert);
+        loc.setSymbol("@@@");  
+
+        // set this location object in each cell 0,0 to 1,1      
+        for(int i = 0; i < 1; i++)
+        {
+            theMap.setLocation(i, 0, loc);
+            theMap.setLocation(i, 1, loc);
+        }
+        //********************************************************************
+        //** Farmland, WheatFields Pos 0-4, 3
+        // create a string that will go in the Location objects
+        // that contain the Farmland - wheatfields
+        String farmWheat = "\nYou are in the Desert. The desert is where criminals" +
+                       "\nare banished. It is sand and bones as far as the eye" +
+                       "\ncan see. The desert is the North West boundary of the map.";
+
+
+
+        // use setters in the Location class to set the description and symbol
+        loc.setDescription(farmWheat);
+        loc.setSymbol("!!!");  
+
+        // set this location object in each cell       
+        for(int i = 0; i < 4; i++)
+        {
+            theMap.setLocation(i, 3, loc);
+ 
+        }        
+       //********************************************************************
+        //** Wilderness,  Pos 0-5, 5
+        // create a string that will go in the Location objects
+        // that contain the wilderness
+        String wilderness = "\nYou are in the wilderness. Off in the distance" +
+                       "\nyou can see settlements of Lamanites who want to pillage" +
+                       "\nyour city for gain. Better keep an eye on them!";
+
+
+
+        // use setters in the Location class to set the description and symbol
+        loc.setDescription(wilderness);
+        loc.setSymbol("fff");  
+
+        // set this location object in each cell       
+        for(int i = 0; i < MAX_ROW; i++)
+        {
+            theMap.setLocation(i, 5, loc);
+ 
+        }         
         
         
         theGame.setTheMap(theMap);
