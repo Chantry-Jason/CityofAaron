@@ -70,6 +70,8 @@ public class ListMenuView extends MenuView implements Serializable{
     public void viewprintAnimals()
     {
         System.out.println("\nView/Print Animals was selected.");
+        
+        
     }
     // The viewprintList of Tools method
     // Purpose: view a List of Tools

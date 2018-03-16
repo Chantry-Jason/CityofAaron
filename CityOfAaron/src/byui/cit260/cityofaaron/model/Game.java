@@ -43,6 +43,7 @@ public class Game implements Serializable{
     public static void main(String[] args) 
     {
         MainMenuView mmv = new MainMenuView();
+        
         mmv.displayMenu();
     }    
   
@@ -55,9 +56,9 @@ public class Game implements Serializable{
     }
 */
     //Constructor
-  //  public Game() {
+    //public Game() {
 
-  //  }
+    //}
 
     public Map getTheMap() {
         return theMap;

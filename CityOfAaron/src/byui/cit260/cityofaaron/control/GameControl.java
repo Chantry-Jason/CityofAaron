@@ -19,8 +19,8 @@ import byui.cit260.cityofaaron.control.*;
  */
 public class GameControl implements Serializable{
     // size of the Locations array
-    private static final int MAX_ROW = 5;
-    private static final int MAX_COL = 5;
+    private static final int MAX_ROW = 6;
+    private static final int MAX_COL = 6;
     
     // reference to a Game object
     private static Game theGame;
@@ -34,22 +34,27 @@ public class GameControl implements Serializable{
         // create the player object. Save it in the game object
         Player thePlayer = new Player();
         thePlayer.setName(pName);
+        //System.out.println("/npname passed to createNewGame: " + pName );
         theGame.setThePlayer(thePlayer); 
+        //System.out.println("/nthePlayer in createNewGame: " + thePlayer );
         
 
         // create the CropData object
-        
+        createCropDataObject();
         // create the list of animals
+        createAnimalList();
         // create the list of tools
+        createToolList();
         //create the list of provisions
-        
-        // create the Locations and the Map object        
+        createProvisionsList();
+        // create the Locations and the Map object  
+        createMap();
     }
 // method prologue ….
     public static void createCropDataObject()
     {
         CropData theCrops = new CropData();
-        
+        //System.out.println("running createCropDataObject");
         theCrops.setYear(0);
         theCrops.setPopulation(100);
         theCrops.setNewPeople(5);
@@ -67,7 +72,7 @@ public class GameControl implements Serializable{
     }
     public static void createAnimalList()
     {
-        ArrayList<ListItem> animals = new ArrayList<ListItem>();
+        ArrayList<ListItem> animals = new ArrayList<>();
         
         animals.add(new ListItem("cows", 12));
         animals.add(new ListItem("horses", 3));
@@ -78,7 +83,7 @@ public class GameControl implements Serializable{
     }
     public static void createToolList()
     {
-        ArrayList<ListItem> tool = new ArrayList<ListItem>();
+        ArrayList<ListItem> tool = new ArrayList<>();
         
         tool.add(new ListItem("hammer", 12));
         tool.add(new ListItem("shovel", 3));
@@ -89,7 +94,7 @@ public class GameControl implements Serializable{
     }
     public static void createProvisionsList()
     {
-        ArrayList<ListItem> provisions = new ArrayList<ListItem>();
+        ArrayList<ListItem> provisions = new ArrayList<>();
         
         provisions.add(new ListItem("Sugar", 12));
         provisions.add(new ListItem("prov2", 3));
@@ -107,12 +112,13 @@ public class GameControl implements Serializable{
         // create the Map object, it is 5 x 5
         // refer to the Map constructor
         Map theMap = new Map(MAX_ROW, MAX_COL);
-        
+        System.out.println("createMap: " + MAX_ROW + " x " + MAX_COL);
         
         //********************************************************************
         //** River Col 0-4, 4
         // create a string that will go in the Location objects
         // that contain the river
+        System.out.println("creating river");
         String river = "\nYou are on the River. The river is the source" +
                        "\nof life for our city. The river marks the eastern " +
                        "\nboundary of the city - it is wilderness to the East.";
@@ -133,6 +139,7 @@ public class GameControl implements Serializable{
         //********************************************************************
         //** Hint for Loc 0,2
         // define the string for a farm land location
+        System.out.println("creating farmland hint 0,2");
         String farmland = "\nYou are on the fertile banks of the River." +
         "\nIn the spring this low farmland floods and is covered with rich" +
         "\nnew soil. Wheat is planted as far as you can see."; 
@@ -146,6 +153,7 @@ public class GameControl implements Serializable{
         //********************************************************************
         //** Hint for Loc 2,0
         // define the string for a farm land location
+        System.out.println("creating farmland hint 2,0");
         String farmland2 = "\nYou are on farmland with rich soil" +
         "\nThis farmland is next to the desert so don't plant rice here," +
         "\nit's too hot! Nothing is currently planted in this field."; 
@@ -161,6 +169,7 @@ public class GameControl implements Serializable{
         //** Desert  0-1, 0-1
         // create a string that will go in the Location objects
         // that contain the Desert
+        System.out.println("creating desert");
         String desert = "\nYou are in the Desert. The desert is where criminals" +
                        "\nare banished. It is sand and bones as far as the eye" +
                        "\ncan see. The desert is the North West boundary of the map.";
