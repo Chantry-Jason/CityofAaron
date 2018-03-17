@@ -1,6 +1,9 @@
 package byui.cit260.cityofaaron.view;
 
+import byui.cit260.cityofaaron.model.Game;
+import byui.cit260.cityofaaron.model.ListItem;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,6 +14,8 @@ public class ListMenuView extends MenuView implements Serializable{
     //private String gameMenu; //text of the menu
     private int max; //number of items in the menu
     Scanner keyboard = new Scanner(System.in);  
+    // reference to a Game object
+    private static Game theGame;
     //Constructor
     public ListMenuView() {
 
@@ -42,6 +47,7 @@ public class ListMenuView extends MenuView implements Serializable{
     // ===================================       
     @ Override public void doAction(int option)
     {
+        
         switch(option) {
             case 1: // view or print list of Animals
                 viewprintAnimals();
@@ -67,9 +73,22 @@ public class ListMenuView extends MenuView implements Serializable{
     // Parameters: none
     // Returns: none
     // ===================================   
-    public void viewprintAnimals()
+    public static void viewprintAnimals()
     {
+        
+        
         System.out.println("\nView/Print Animals was selected.");
+        Game theGame = new Game();
+        ArrayList<ListItem> animals = theGame.getAnimals();
+        
+        int arrayLength = animals.size();
+        System.out.println("Animals array size: " + arrayLength);
+
+        for (int i = 0; i < animals.size(); i++) {
+            ListItem listItem = animals.get(i);
+            System.out.println("\n\tItem: " + listItem.getName() +
+                               "\n\tQuantity: " + listItem.getNumber());
+        }
         
         
     }
@@ -81,6 +100,17 @@ public class ListMenuView extends MenuView implements Serializable{
     public void viewprintTools()
     {
         System.out.println("\nView/Print Tools was selected.");
+        Game theGame = new Game();
+        ArrayList<ListItem> tools = theGame.getTools();
+        
+        int arrayLength = tools.size();
+        System.out.println("Tool array size: " + arrayLength);
+
+        for (int i = 0; i < tools.size(); i++) {
+            ListItem listItem = tools.get(i);
+            System.out.println("\n\tItem: " + listItem.getName() +
+                               "\n\tQuantity: " + listItem.getNumber());
+        }
     }
     // The viewprintList of Provisions method
     // Purpose: view a List of Provisions

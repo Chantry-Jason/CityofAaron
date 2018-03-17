@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import byui.cit260.cityofaaron.*;
 import byui.cit260.cityofaaron.model.*;
 import byui.cit260.cityofaaron.control.*;
+import java.util.Arrays;
 
 
 
@@ -70,7 +71,7 @@ public class GameControl implements Serializable{
         
         theGame.setCropData(theCrops);         
     }
-    public static void createAnimalList()
+    public static ArrayList<ListItem> createAnimalList()
     {
         ArrayList<ListItem> animals = new ArrayList<>();
         
@@ -80,8 +81,19 @@ public class GameControl implements Serializable{
         animals.add(new ListItem("goats", 4));
        
         theGame.setAnimals(animals);
+        //read the array back and print it. DEBUG
+        int arrayLength = animals.size();
+        System.out.println("Animals array size: " + arrayLength);
+
+        for (int i = 0; i < animals.size(); i++) {
+            ListItem listItem = animals.get(i);
+            System.out.println("\n\tItem: " + listItem.getName() +
+                               "\n\tQuantity: " + listItem.getNumber());
+        }
+        //End Debug
+        return animals;
     }
-    public static void createToolList()
+    public static ArrayList<ListItem> createToolList()
     {
         ArrayList<ListItem> tool = new ArrayList<>();
         
@@ -91,8 +103,9 @@ public class GameControl implements Serializable{
         tool.add(new ListItem("Plow", 4));
        
         theGame.setTools(tool);
+        return tool;
     }
-    public static void createProvisionsList()
+    public static ArrayList<ListItem> createProvisionsList()
     {
         ArrayList<ListItem> provisions = new ArrayList<>();
         
@@ -102,6 +115,7 @@ public class GameControl implements Serializable{
         provisions.add(new ListItem("prov4", 4));
        
         theGame.setProvisions(provisions);
+        return provisions;
     }
     // The createMap method
     // Purpose: creates the location objects and the map

@@ -13,7 +13,8 @@ public class ListItem implements Serializable{
     private String name;
     private int number;
     public ListItem(String name, int i) {
-        
+        this.name = name;
+        this.number = i;        
     }
     public String getName() {
         return name;
