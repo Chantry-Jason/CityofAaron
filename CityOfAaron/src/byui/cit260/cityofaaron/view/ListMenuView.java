@@ -77,12 +77,10 @@ public class ListMenuView extends MenuView implements Serializable{
     {
         
         
-        System.out.println("\nView/Print Animals was selected.");
+        System.out.println("\nHere is a list of the animals you currently have.");
         Game theGame = new Game();
         ArrayList<ListItem> animals = theGame.getAnimals();
         
-        int arrayLength = animals.size();
-        System.out.println("Animals array size: " + arrayLength);
 
         for (int i = 0; i < animals.size(); i++) {
             ListItem listItem = animals.get(i);
@@ -99,13 +97,10 @@ public class ListMenuView extends MenuView implements Serializable{
     // ===================================   
     public void viewprintTools()
     {
-        System.out.println("\nView/Print Tools was selected.");
+        System.out.println("\nHere is a list of the tools you have in the shed.");
         Game theGame = new Game();
         ArrayList<ListItem> tools = theGame.getTools();
         
-        int arrayLength = tools.size();
-        System.out.println("Tool array size: " + arrayLength);
-
         for (int i = 0; i < tools.size(); i++) {
             ListItem listItem = tools.get(i);
             System.out.println("\n\tItem: " + listItem.getName() +
@@ -119,7 +114,16 @@ public class ListMenuView extends MenuView implements Serializable{
     // ===================================   
     public void viewprintProvisions()
     {
-        System.out.println("\nView/Print Provisions was selected.");
+        System.out.println("\nHere is a list of your current provisions.");
+               
+        Game theGame = new Game();
+        ArrayList<ListItem> prov = theGame.getTools();
+        
+        for (int i = 0; i < prov.size(); i++) {
+            ListItem listItem = prov.get(i);
+            System.out.println("\n\tItem: " + listItem.getName() +
+                               "\n\tQuantity: " + listItem.getNumber());
+        }
     }
     // The viewprintList of Authors method
     // Purpose: view a List of Authors

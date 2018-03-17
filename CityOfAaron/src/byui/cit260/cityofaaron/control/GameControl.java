@@ -81,16 +81,7 @@ public class GameControl implements Serializable{
         animals.add(new ListItem("goats", 4));
        
         theGame.setAnimals(animals);
-        //read the array back and print it. DEBUG
-        int arrayLength = animals.size();
-        System.out.println("Animals array size: " + arrayLength);
-
-        for (int i = 0; i < animals.size(); i++) {
-            ListItem listItem = animals.get(i);
-            System.out.println("\n\tItem: " + listItem.getName() +
-                               "\n\tQuantity: " + listItem.getNumber());
-        }
-        //End Debug
+        
         return animals;
     }
     public static ArrayList<ListItem> createToolList()

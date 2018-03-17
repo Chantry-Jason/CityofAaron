@@ -22,12 +22,12 @@ public class Game implements Serializable{
     // Class instance variables
 
    //private Map theMap;
-    private Player thePlayer;
-    private CropData cropData;
-    private TeamMember[] team ;
-    private ArrayList<ListItem> animals; 
-    private ArrayList<ListItem> tools ;
-    private ArrayList<ListItem> provisions;
+    private static Player thePlayer;
+    private static CropData cropData;
+    private static TeamMember[] team ;
+    private static ArrayList<ListItem> animals; 
+    private static ArrayList<ListItem> tools ;
+    private static ArrayList<ListItem> provisions;
     
 
         //Variables****************
