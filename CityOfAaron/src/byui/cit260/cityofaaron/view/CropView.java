@@ -116,22 +116,42 @@ public class CropView implements Serializable{
 
         // Feed your people
         //System.out.format("Feeding your people will cost %d of your wheat in store.%n",feed);
-        System.out.print("\nHow many bushels of grain do you want to give to the people? "); 
+        System.out.print("\nDo you wish to feed your people? "); 
 
         //  Get the user’s input and save it.
         int toFeed;
-        toFeed = keyboard.nextInt();
-
+        
+        
+        boolean paramsNotOkay;
+        
+        // Prompt the user to enter the number of acres to buy
+        //System.out.format("Land is selling for %d bushels per acre.%n",price);
+        
+        do {
+            paramsNotOkay = false;
+            System.out.print("\nHow many bushels of grain do you want to give to the people?  ");   
+            toFeed = keyboard.nextInt();
+            try {
+                // Call the feedPeople( ) method in the control layer to feed people
+                CropControl.feedPeople(toFeed, theCropData);  
+            } catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+ 
+            }
+        }while(paramsNotOkay);
+        
         // Call the sellLand( ) method in the control layer to sell the land
-        wheatInStore = CropControl.feedPeople(toFeed, theCropData);
+        //wheatInStore = CropControl.feedPeople(toFeed, theCropData);
         
         //error handling. If return is -1 then ask again.
-        if (wheatInStore == -1) {
+        //if (wheatInStore == -1) {
             //number entered is less than 0, ask again. Jump up to top...
-        }
-        if (wheatInStore == -2) {
+        //}
+       // if (wheatInStore == -2) {
             //number endered is more than the total wheat instore, ask again. Jump to top...
-        }
+        //}
 
 
     }

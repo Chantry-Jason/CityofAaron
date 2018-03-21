@@ -188,19 +188,22 @@ public class CropControl implements Serializable{
     //                 must be <= total crops owned
     
     // Author: Jason
-    public static int plantCrops(int userPlantCrops, CropData cropData) {
+    public static int plantCrops(int userPlantCrops, CropData cropData) throws CropException {
         
         int wheatInStore = cropData.getWheatInStore();
         int landOwned = cropData.getAcresOwned();
         if (userPlantCrops < 0) {
-            return -1;      //negative number. Invalid
+            throw new CropException("Negative value not valid.");
+            //return -1;      //negative number. Invalid
         }
         if ((userPlantCrops * ACRES_PER_BUSHEL) > wheatInStore) {
-            return -2;      //don't have enough wheat in store to plant the requested crops
+             throw new CropException("Not enough Wheat In Store.");
+            //return -2;      //don't have enough wheat in store to plant the requested crops
         }
         if (userPlantCrops > landOwned) {
             //trying to plant more acres than is owned.
-            return -3;
+            throw new CropException("Not enough land.");
+            //return -3;
         }
         int numBushelsReqToPlant = userPlantCrops * ACRES_PER_BUSHEL;
         int cropsLeft = wheatInStore - numBushelsReqToPlant;
@@ -335,7 +338,7 @@ public class CropControl implements Serializable{
     // and must have enough wheat in the store to fill the requested amount of food.
     // Author: Jason Chantry
 
-    public static int feedPeople (int amountToFeedPeople, CropData cropData) {
+    public static int feedPeople (int amountToFeedPeople, CropData cropData) throws CropException {
                       
         //Get wheatInStore
         int wheatInStore = cropData.getWheatInStore();
@@ -344,14 +347,16 @@ public class CropControl implements Serializable{
         //-1 means that the amount requested to feed the people is a negative
         //(invalid) number. Try again.
         if (amountToFeedPeople < 0) {
-            return -1;
+            throw new CropException("No people to feed.");
+            //return -1;
         }
         
         //If amountToFeedPeople > wheatInStore return -2
         //-2 will tell main program that there is not enough wheat in the store
         //to fill the request. Try again.
         if (amountToFeedPeople > wheatInStore) {
-            return -2; //-2 will tell main program that there is not enough
+            throw new CropException("Not enough wheat to feed all of your people.");
+            //return -2; //-2 will tell main program that there is not enough
         }
 
         //set wheatInStore = wheatInStore – amountToFeedPeople
