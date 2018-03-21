@@ -75,10 +75,11 @@ public class CropControl implements Serializable{
  
     // Author: Jason
     
-    public static int setOffering(int userOffering, CropData cropData) {
+    public static int setOffering(int userOffering, CropData cropData) throws CropException {
         //check pre-conditions
         if ((userOffering < 0) || (userOffering > 100)) {
-            return -1;          //offering invalid
+            throw new CropException("The offering you entered is invalid. Please enter a number between 0 and 100 percent. Thank you m'Lord.");
+            //return -1;          //offering invalid
         }
         //save the Offering entered by user in cropData.Offering
         cropData.setOffering(userOffering);
@@ -154,16 +155,16 @@ public class CropControl implements Serializable{
     // Pre-conditions: acres to sell must be positive
     // and <= acresOwned
     // Author: Ken, Jason, Josh
-    public static int sellLand(int landPrice, int acresToSell, CropData cropData) {
+    public static int sellLand(int landPrice, int acresToSell, CropData cropData) throws CropException {
         //if acresToSell < 0, return -1
         if (acresToSell < 0) {
-            return -1;
+            throw new CropException("A negative value was entered. Please enter a positive value.");
         }
              
         //if acresToSell  > acresOwned, return -1
         int owned = cropData.getAcresOwned();
         if (acresToSell > owned) {
-            return -1;
+            throw new CropException("m'Lord, you don't have that much land to sell.");
         }
         //acresOwned = acresOwned - acresToSell
         owned -= acresToSell;

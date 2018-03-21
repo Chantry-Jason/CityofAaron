@@ -35,14 +35,13 @@ public class CropView implements Serializable{
         buyLandView();
         
         sellLandView();
-        // add calls to the other crop view methods
-        // as they are written
-        /*   
-            feedPeopleView()
-            plantCropsView()
-            showStarvedView()
-            displayCropsReportView()
-        */
+        feedPeopleView();
+
+        //plantCropsView()
+        setOfferingView();
+        //showStarvedView()
+        //displayCropsReportView()
+
     }
 
     
@@ -87,28 +86,65 @@ public class CropView implements Serializable{
     {
         // Get the cost of land for this round.
         int price = theCropData.getCostOfLandThisRound();
-
-        // Prompt the user to enter the number of acres to buy
-        System.out.format("Land is selling for %d bushels per acre.%n",price);
-        System.out.print("\nHow many acres of land do you wish to sell? "); 
-
-        //  Get the user’s input and save it.
+        boolean paramsNotOkay;
         int toSell;
-        toSell = keyboard.nextInt();
+// Prompt the user to enter the number of acres to buy
+        System.out.format("Land is selling for %d bushels per acre.%n",price);
 
         // Call the sellLand( ) method in the control layer to sell the land
-        int acresOwned = CropControl.sellLand(price, toSell, theCropData);
         
-        //error handling. If return is -1 then ask again.
-        if (acresOwned == -1) {
-            //invalid number, ask again. Jump up to top...
-            
-        }
+        do {
+            paramsNotOkay = false;
+            System.out.print("\nHow many acres of land do you wish to sell? "); 
+            //  Get the user’s input and save it.
+            toSell = keyboard.nextInt();
+            try {
+                // Call the sellLand( ) method in the control layer to sell the land
+                CropControl.sellLand(price, toSell, theCropData);   
+            } catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+ 
+            }
+        }while(paramsNotOkay);
 
 
     }
+    // The setOffering method
+    // Purpose: ask user what amount of wheat they would like to give to offerings
+    // Parameters: none
+    // Returns: none
+    //Author: Jason Chantry
+    public static void setOfferingView()
+    {
+                
+        int offering;
+        boolean paramsNotOkay;
+        
+        // Prompt the user to enter the percentage to offer
+        System.out.format("Offerings to the Lord will bring forth blessings.");
+        
+        do {
+            paramsNotOkay = false;
+            System.out.print("\nWhat percentage of your harvest would you like to set aside for tithes and offerings? ");   
+            offering = keyboard.nextInt();
+            try {
+                // Call the setOffering( ) method in the control layer to set aside offerings
+                CropControl.setOffering(offering, theCropData);   
+            } catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+ 
+            }
+        }while(paramsNotOkay);
+
+    }
     
-    //Author: Ken Strobell
+
+
+//Author: Ken Strobell
     public static void feedPeopleView()
     {
         // Feed People for this round.
@@ -116,7 +152,7 @@ public class CropView implements Serializable{
 
         // Feed your people
         //System.out.format("Feeding your people will cost %d of your wheat in store.%n",feed);
-        System.out.print("\nDo you wish to feed your people? "); 
+        //System.out.print("\nDo you wish to feed your people? "); 
 
         //  Get the user’s input and save it.
         int toFeed;
