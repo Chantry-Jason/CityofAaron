@@ -6,6 +6,7 @@
 package byui.cit260.cityofaaron.view;
 import byui.cit260.cityofaaron.model.*;
 import byui.cit260.cityofaaron.control.*;
+import byui.cit260.cityofaaron.exceptions.CropException;
 import java.util.Scanner;
 import byui.cit260.cityofaaron.model.Game;
 import java.io.Serializable;
@@ -55,23 +56,26 @@ public class CropView implements Serializable{
     {
         // Get the cost of land for this round.
         int price = CropControl.calcLandCost(theCropData);
-
+        int toBuy;
+        boolean paramsNotOkay;
+        
         // Prompt the user to enter the number of acres to buy
         System.out.format("Land is selling for %d bushels per acre.%n",price);
-        System.out.print("\nHow many acres of land do you wish to buy? "); 
-
-        //  Get the user’s input and save it.
-        int toBuy;
-        toBuy = keyboard.nextInt();
-
-        // Call the buyLand( ) method in the control layer to buy the land
-        int acresOwned = CropControl.buyLand(price, toBuy, theCropData);
         
-        //error handling. If return is -1 then ask again.
-        if (acresOwned == -1) {
-            //invalid number, ask again. jump up to top...
-        }
-
+        do {
+            paramsNotOkay = false;
+            System.out.print("\nHow many acres of land do you wish to buy? ");   
+            toBuy = keyboard.nextInt();
+            try {
+                // Call the buyLand( ) method in the control layer to buy the land
+                CropControl.buyLand(price, toBuy, theCropData);   
+            } catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+ 
+            }
+        }while(paramsNotOkay);
 
     }
     // The sellLandView method

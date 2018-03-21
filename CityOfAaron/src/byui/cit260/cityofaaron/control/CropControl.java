@@ -5,6 +5,7 @@
  */
 package byui.cit260.cityofaaron.control;
 
+import byui.cit260.cityofaaron.exceptions.CropException;
 import byui.cit260.cityofaaron.model.CropData;
 import java.io.Serializable;
 import java.util.Random;
@@ -32,7 +33,7 @@ public class CropControl implements Serializable{
     // Pre-conditions: acres to buy must be positive or zero
     // and cost must be <= current coin
     // Author: JChantry
-    public static int buyLand(int price, int acresToBuy, CropData cropData) {
+    public static int buyLand(int price, int acresToBuy, CropData cropData) throws CropException {
         
         //get wheat in store, and acres owned
         int wheatInStore = cropData.getWheatInStore();
@@ -40,17 +41,21 @@ public class CropControl implements Serializable{
         int population = cropData.getPopulation();
         //if acresToBuy < 0, return -1
         if (acresToBuy < 0) {
-            return -1;
+            throw new CropException("A negative value was input.");
+            //return -1;
         }
         //if (acresToBuy * landPrice) > wheatInStore,  return -1
         if ((acresToBuy * price) > wheatInStore) {
             //don't have enough wheat to purchase this land
-            return -2;  
+            throw new CropException("There is insufficient wheat to buy this much land.");
+
+            //return -2;  
         }
         //make sure the city has enough people to tend the land.
         if (((acresToBuy + acresOwned) / PEOPLE_PER_ACRE) > population) {
             //don't have enough people to tend this much land. 
-            return -3;
+            throw new CropException("Not enough people to work the land you wish to purchase.");
+            //return -3;
         }
         //acresOwned = acresOwned + acresToBuy
         acresOwned += acresToBuy;
