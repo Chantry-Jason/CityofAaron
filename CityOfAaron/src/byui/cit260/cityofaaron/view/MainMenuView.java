@@ -127,14 +127,14 @@ public class MainMenuView extends MenuView implements Serializable{
         Player thePlayer = new Player();
         // Prompt for and get the user’s name.
         String name;
-        System.out.println("\nPlease type your first name: ");
+        System.out.println("\nWhat is your name M'Lord? ");
         name = keyboard.next();
         // Save the user’s name in the Player object
         thePlayer.setName(name);
         // Save a reference to the player object in the Game object
         theGame.setThePlayer(thePlayer);
         // Display a welcome message
-        System.out.println("\nWelcome " + name + " have fun!!");
+        System.out.println("\nWelcome to the city " + name + " have fun!!");
         // call the createNewGame( ) method. Pass the name as a parameter
         GameControl.createNewGame(name);
 

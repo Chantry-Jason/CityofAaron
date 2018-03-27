@@ -13,7 +13,7 @@ import java.util.Random;
  
 /**
  *
- * @author JChantry, KStrobell, JGregg
+ * @author JChantry, KStrobell
  */
 public class CropControl implements Serializable{
   
@@ -95,7 +95,7 @@ public class CropControl implements Serializable{
     // Pre-conditions: percentage must be >= 0 and <= 100% 
     //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
     // Author: Jason Chantry
-   public static int payOffering (double percentOffering, CropData cropData) {
+   public static int payOffering (double percentOffering, CropData cropData) throws CropException {
        
        //Calculate the bushels of wheat paid for offerings based on user percentage input
        //Outside variables: HarvestAfterOffering, Harvest, WheatInStore, Offering
@@ -348,7 +348,7 @@ public class CropControl implements Serializable{
         //-1 means that the amount requested to feed the people is a negative
         //(invalid) number. Try again.
         if (amountToFeedPeople < 0) {
-            throw new CropException("No people to feed.");
+            throw new CropException("M'Lord, you can't take food from the people's mouths. Please enter a number greater or equal to 0.");
             //return -1;
         }
         
@@ -356,7 +356,7 @@ public class CropControl implements Serializable{
         //-2 will tell main program that there is not enough wheat in the store
         //to fill the request. Try again.
         if (amountToFeedPeople > wheatInStore) {
-            throw new CropException("Not enough wheat to feed all of your people.");
+            throw new CropException("M'Lord, There is not enough wheat in the storehouse to grant your request.");
             //return -2; //-2 will tell main program that there is not enough
         }
 

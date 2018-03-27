@@ -36,11 +36,25 @@ public class CropView implements Serializable{
         
         sellLandView();
         feedPeopleView();
-
-        //plantCropsView()
+        plantCropsView();
+        
         setOfferingView();
+        //Calculate crops harvested. data already checked so no errors should occur
+        CropControl.harvestCrops(theCropData);
+        //payOffering
+        payOfferingView();
+        //storeWheat
+        CropControl.storeWheat(theCropData);
+        //calcEatenByRats
+        CropControl.calcEatenByRats(theCropData);
+        //calcStarved
+        CropControl.calcStarved(theCropData);
+        //growPopulation
+        CropControl.growPopulation(theCropData);
         //showStarvedView()
+        showStarvedView();
         //displayCropsReportView()
+        endOfYearReportView();
 
     }
 
@@ -111,6 +125,67 @@ public class CropView implements Serializable{
 
 
     }
+    // The plantCropsView method
+    // Purpose: interface with the user input for planting crops
+    // Parameters: none
+    // Returns: none
+    //Author: Jason Chantry
+    public static void plantCropsView()
+    {
+        // Get the cost of land for this round.
+        int landOwned = theCropData.getAcresOwned();
+        boolean paramsNotOkay;
+        int toPlant;
+// Prompt the user to enter the number of acres to buy
+        System.out.format("You currently own %d acres of land.%n",landOwned);
+
+        // Call the plantCrops( ) method in the control layer to set aside how many crops to plant
+        
+        do {
+            paramsNotOkay = false;
+            System.out.print("\nHow many acres of land do you wish to plant? "); 
+            //  Get the user’s input and save it.
+            toPlant = keyboard.nextInt();
+            try {
+                // Call the sellLand( ) method in the control layer to sell the land
+                CropControl.plantCrops(toPlant, theCropData);   
+            } catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this.");
+                System.out.println(e.getMessage());
+                paramsNotOkay = true;
+ 
+            }
+        }while(paramsNotOkay);
+
+
+    }
+    // The showStarvedView method
+    // Purpose: display how many people starved due to lack of food
+    // Parameters: none
+    // Returns: none
+    //Author: Jason Chantry
+    public static void showStarvedView()
+    {
+        // Get the cost of land for this round.
+        int starved = theCropData.getNumStarved();
+        int population = theCropData.getPopulation();
+
+
+        // determine if people starved or not
+        if (starved > 0) {
+            System.out.println("M'Lord, unfortunately you di dnot set aside enough wheat"
+                    + "to feed all of your people. " + starved + " of your citizens "
+                    + "starved to death. The total city population is now " + population + " %n.");
+        } else {
+            System.out.println("Blessed be the name of the Lord! None of your "
+                    + "citizens starved this year. Your population remains at"
+                    + " " + population + ".");
+        }
+  
+    }
+
+
+
     // The setOffering method
     // Purpose: ask user what amount of wheat they would like to give to offerings
     // Parameters: none
@@ -141,7 +216,35 @@ public class CropView implements Serializable{
         }while(paramsNotOkay);
 
     }
-    
+    // The payOfferingView method
+    // Purpose: pay the offerings that the user already set in setOffering
+    // Parameters: none
+    // Returns: none
+    //Author: Jason Chantry
+    public static void payOfferingView()
+    {
+        // Get the cost of land for this round.
+        int offering = theCropData.getOffering();
+        double offeringPercent;
+        boolean paramsNotOkay;
+        
+        do {
+            paramsNotOkay = false;
+            System.out.print("\nHanding tithes to the high priest... ");   
+            //toBuy = keyboard.nextInt();
+            try {
+                offeringPercent = offering * 100.00;
+                
+                // Call the payOffering( ) method in the control layer to pay tithes
+                CropControl.payOffering(offeringPercent, theCropData);   
+            } catch(CropException e) {
+                System.out.println("I am sorry master, I cannot do this. There was an error in paying tithes.");
+                paramsNotOkay = true;
+ 
+            }
+        }while(paramsNotOkay);
+
+    }    
 
 
 //Author: Ken Strobell
@@ -191,5 +294,35 @@ public class CropView implements Serializable{
 
 
     }
+     // The endOfYearReportView method
+    // Purpose: display the city stats
+    // Parameters: none
+    // Returns: none
+    //Author: Jason Chantry
+    public static void endOfYearReportView()
+    {
+        // Get the cost of land for this round.
+        int year = theCropData.getYear();
+        int starved = theCropData.getNumStarved();
+        int growth = theCropData.getNewPeople();
+        int population = theCropData.getPopulation();
+        int land = theCropData.getAcresOwned();
+        int bushelsPerAcre = theCropData.getCostOfLandThisRound();
+        int wheatHarvested = theCropData.getHarvest();
+        int offerings = theCropData.getOffering();
+        int harvestAfterOfferings = theCropData.getHarvestAfterOffering();
+        int eatenByRats = theCropData.getEatenByRats();
+        int wheatToPeople = theCropData.getWheatForPeople();
+        int wheat = theCropData.getWheatInStore();
+
+        System.out.println(
+            "**********************************\n" +
+            "*  CITY OF AARON: ANNUAL REPORT  *\n" +
+            "**********************************\n");
+
+
+        
+
   
+    }
 }
