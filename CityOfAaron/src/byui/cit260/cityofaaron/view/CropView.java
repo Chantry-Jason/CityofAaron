@@ -31,6 +31,7 @@ public class CropView implements Serializable{
     // Returns: none
     public void runCropsView()
     {
+
         // call the buyLandView( ) method
         buyLandView();
         
@@ -56,6 +57,7 @@ public class CropView implements Serializable{
         //displayCropsReportView()
         endOfYearReportView();
 
+        
     }
 
     
@@ -316,17 +318,28 @@ public class CropView implements Serializable{
         int wheat = theCropData.getWheatInStore();
 
         System.out.println(
-            "**********************************\n" +
-            "*  CITY OF AARON: ANNUAL REPORT  *\n" +
-            "**********************************\n" +
-            "Years since you were made ruler: " + year + " %n" + 
-            "People who starved: " + starved + "%n" + 
-            "People who moved into the city: " + growth + "%n" + 
-            ""        
-                    
-                    );
+            "******************************************************\n" +
+            "*           CITY OF AARON: ANNUAL REPORT             *\n" +
+            "******************************************************\n" +
+            "Years since you were made ruler: " + year + " \n" + 
+            "People who starved: " + starved + "\n" + 
+            "People who moved into the city: " + growth + "\n" + 
+            "Current population: " + population + "\n" + 
+            "Acres of land owned by the city: " + land + "\n" + 
+            "Number of bushels per acre for this years harvest: " + bushelsPerAcre + "\n" + 
+            "Bushels of wheat that was harvested: " + wheatHarvested + "\n" + 
+            "Bushels of wheat paid in offerings: " + offerings + "\n" + 
+            "Bushels of wheat harvested after payment of offerings: " + harvestAfterOfferings + "\n" + 
+            "Bushels of wheat eaten by rats: " + eatenByRats + "\n" + 
+            "Bushels of wheat fed to the people: " + wheatToPeople + "\n" +
+            "Total bushels of wheat inthe storehouse: " + wheat + "\n" );
 
-
+            //if more than 50% people starve, end game with message
+            
+            //incrament year
+            
+           
+            
         
 
   
