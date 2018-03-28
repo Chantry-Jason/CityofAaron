@@ -231,14 +231,14 @@ public class CropControl implements Serializable{
             int TITHING_BASE = 0;
             int TITHING_RANGE = 0;
             //2-5 random
-            if (tithesPaid > 12) {
+            if (tithesPaid >= 12) {
                 TITHING_BASE = 2;
                 TITHING_RANGE = 4;
                 //System.out.println("Tithes > 12");
                 
             }
             //1-3 random
-            if (tithesPaid < 8) { 
+            if (tithesPaid <= 8) { 
                 TITHING_BASE = 1;
                 TITHING_RANGE = 3;                
                 //System.out.println("Tithes <8");

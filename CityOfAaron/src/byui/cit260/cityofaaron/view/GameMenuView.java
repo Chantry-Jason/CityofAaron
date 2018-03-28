@@ -8,13 +8,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author KStrobell
+ * @author KStrobell, JChantry
  */
 public class GameMenuView extends MenuView implements Serializable{
     //private String gameMenu; //text of the menu
     //private int max; //number of items in the menu
     //Scanner keyboard = new Scanner(System.in);  
     //Constructor
+    private static CropData theCrops;
     public GameMenuView() {
 
         
@@ -45,6 +46,7 @@ public class GameMenuView extends MenuView implements Serializable{
     // ===================================       
     @Override public void doAction(int option)
     {
+        CropData theCrops = new CropData();
         switch(option) {
             case 1: // display map of the game
                 displayMap();
@@ -56,7 +58,7 @@ public class GameMenuView extends MenuView implements Serializable{
                 moveLocation();
                 break;
             case 4: // Manage the Crops
-                manageCrops();
+                manageCrops(theCrops);
                 break;
             case 5: // back to main menu
                 break;
@@ -99,7 +101,7 @@ public class GameMenuView extends MenuView implements Serializable{
     // Parameters: none
     // Returns: none
     // ===================================   
-    public void manageCrops()
+    public void manageCrops(CropData cropData)
     {
         System.out.println("\n-----------------------------------");
         CropData theCrops = new CropData();
@@ -111,11 +113,13 @@ public class GameMenuView extends MenuView implements Serializable{
         
         //if more than 50% people died, end game
         int population = theCrops.getPopulation();
-        int loss = 1 - (population / startPopulation);
+        
+        double loss = ((population*1.00) / startPopulation);
+        loss = 1.00 - loss;
         if (loss > 0.5) {
             String name = player.getName();
             System.out.println("You have received a letter from the High Priest over"
-                    + "the City of Aaron. It reads: \n");
+                    + " the City of Aaron. \nIt reads: \n");
             System.out.println("Dear " + name + ",\n"
                     + "It has come to my attention that you have killed " + (loss * 100) + "% \n"
                     + "of your people. This is not pleasing to the Lord nor to me. \n"
@@ -128,7 +132,7 @@ public class GameMenuView extends MenuView implements Serializable{
         }
         //Incrament year by 1
         int year = theCrops.getYear();
-        year += year;
+        year = year + 1;
         theCrops.setYear(year);
     }
     

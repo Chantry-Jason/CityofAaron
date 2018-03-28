@@ -175,12 +175,12 @@ public class CropView implements Serializable{
 
         // determine if people starved or not
         if (starved > 0) {
-            System.out.println("M'Lord, unfortunately you di dnot set aside enough wheat"
-                    + "to feed all of your people. " + starved + " of your citizens "
+            System.out.println("M'Lord, unfortunately you did not set aside enough wheat \n"
+                    + "to feed all of your people. " + starved + " of your citizens \n"
                     + "starved to death. The total city population is now " + population + " %n.");
         } else {
-            System.out.println("Blessed be the name of the Lord! None of your "
-                    + "citizens starved this year. Your population remains at"
+            System.out.println("Blessed be the name of the Lord! None of your \n"
+                    + "citizens starved this year. Your population is now"
                     + " " + population + ".");
         }
   
@@ -235,7 +235,7 @@ public class CropView implements Serializable{
             System.out.print("\nHanding tithes to the high priest... ");   
             //toBuy = keyboard.nextInt();
             try {
-                offeringPercent = offering * 100.00;
+                offeringPercent = offering / 100.00;
                 
                 // Call the payOffering( ) method in the control layer to pay tithes
                 CropControl.payOffering(offeringPercent, theCropData);   
