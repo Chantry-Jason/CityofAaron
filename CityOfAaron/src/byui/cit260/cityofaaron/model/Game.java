@@ -23,30 +23,18 @@ public class Game implements Serializable{
 
    //private Map theMap;
     private static Player thePlayer;
-    private static CropData cropData;
+    //private static CropData cropData;
+    private static CropData theCrops;
     private static TeamMember[] team ;
     private static ArrayList<ListItem> animals; 
     private static ArrayList<ListItem> tools ;
     private static ArrayList<ListItem> provisions;
-    
-
-        //Variables****************
-    //-mygame: Game
-    //errorLog: PrintWriter
 
     private static Game theGame;
-    private CropData theCrops;
-    private Map theMap;
+    //private CropData theCrops;
+    private static Map theMap;
 
-    //Main Function - entry point for the program
-    //runs the main menu
-    public static void main(String[] args) 
-    {
-        MainMenuView mmv = new MainMenuView();
-        
-        mmv.displayMenu();
-    }    
-  
+
 
 /*  public static void setErrorLog(PrintWriter printWriter){
 
@@ -99,11 +87,13 @@ public class Game implements Serializable{
     }
 
     public CropData getCropData() {
-        return cropData;
+        //return cropData;
+        return theCrops;
     }
 
     public void setCropData(CropData cropData) {
-        this.cropData = cropData;
+        //this.cropData = cropData;
+        this.theCrops = cropData;
     }
 
     public TeamMember[] getTeam() {

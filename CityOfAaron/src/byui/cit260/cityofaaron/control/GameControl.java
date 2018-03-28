@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import byui.cit260.cityofaaron.*;
 import byui.cit260.cityofaaron.model.*;
 import byui.cit260.cityofaaron.control.*;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
 
@@ -238,8 +243,46 @@ public class GameControl implements Serializable{
         
     }
 
+    // the getSavedGame method
+    // Purpose: load a saved game from disk
+    // Parameters: the file path
+    // Returns: none
+    // Side Effect: the game reference in the driver is updated
+    public static void getSavedGame(String filePath)
+    {
+        Game theGame = null;
+        
+        try (FileInputStream fips = new FileInputStream(filePath))
+        {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            //theGame = (Game)  input.readObject();
+            theGame = (Game) input.readObject();
+        }
+        catch(Exception e)
+        {
+            System.out.println("\nThere was an error reading the saved game file");
+        }
+    }
 
-
+    // the saveGame method
+    // Purpose: save a saved game from disk
+    // Parameters: the file path
+    // Returns: none
+    // Side Effect: the game reference in the driver is updated
+    public static void saveGame(String filePath) 
+    {
+        Game game = new Game();
+        //theGame = new Game();
+        try (FileOutputStream fops = new FileOutputStream(filePath))
+        {
+            ObjectOutputStream out = new ObjectOutputStream(fops);
+            out.writeObject(game);
+        }
+        catch(Exception e)
+        {
+            System.out.println("\nThere was an error saving the game file. " + e.getMessage());
+        }
+    }
 
 
 

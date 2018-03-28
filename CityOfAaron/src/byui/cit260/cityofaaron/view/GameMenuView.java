@@ -9,9 +9,9 @@ import java.util.Scanner;
  * @author KStrobell
  */
 public class GameMenuView extends MenuView implements Serializable{
-    private String gameMenu; //text of the menu
-    private int max; //number of items in the menu
-    Scanner keyboard = new Scanner(System.in);  
+    //private String gameMenu; //text of the menu
+    //private int max; //number of items in the menu
+    //Scanner keyboard = new Scanner(System.in);  
     //Constructor
     public GameMenuView() {
 
@@ -79,7 +79,7 @@ public class GameMenuView extends MenuView implements Serializable{
     // ===================================   
     public void viewprintList()
     {
-        System.out.println("\nView/Print List was selected.");
+        //System.out.println("\nView/Print List was selected.");
         ListMenuView listMenu = new ListMenuView(); //JChantry
         listMenu.displayMenu();                     //JChantry
     }

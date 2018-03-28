@@ -18,6 +18,12 @@ public abstract class MenuView implements ViewInterface{
     // Purpose: Initialize the view object with the menu string
     // Parameters: the menu string and the max value
     // Returns: none
+
+    /**
+     *
+     * @param _menu
+     * @param _max
+     */
     public MenuView(String _menu, int _max)
     {
         menu = _menu;

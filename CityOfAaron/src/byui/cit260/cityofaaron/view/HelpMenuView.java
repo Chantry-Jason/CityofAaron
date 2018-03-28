@@ -14,8 +14,8 @@ import java.io.Serializable;
  */
 public class HelpMenuView extends MenuView implements Serializable {
     //private String helpMenu; //text of the menu
-    private int max; //number of items in the menu
-    Scanner keyboard = new Scanner(System.in);  
+    //private int max; //number of items in the menu
+    //Scanner keyboard = new Scanner(System.in);  
     //Constructor
     public HelpMenuView() {
 

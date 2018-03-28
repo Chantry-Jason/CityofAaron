@@ -318,7 +318,13 @@ public class CropView implements Serializable{
         System.out.println(
             "**********************************\n" +
             "*  CITY OF AARON: ANNUAL REPORT  *\n" +
-            "**********************************\n");
+            "**********************************\n" +
+            "Years since you were made ruler: " + year + " %n" + 
+            "People who starved: " + starved + "%n" + 
+            "People who moved into the city: " + growth + "%n" + 
+            ""        
+                    
+                    );
 
 
         

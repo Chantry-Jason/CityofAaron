@@ -7,11 +7,11 @@
 package byui.cit260.cityofaaron.view;
 import byui.cit260.cityofaaron.control.GameControl;
 import byui.cit260.cityofaaron.model.CropData;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.Player;
-import byui.cit260.cityofaaron.view.HelpMenuView;
+//import byui.cit260.cityofaaron.view.HelpMenuView;
 import java.io.Serializable;
 
      
@@ -22,9 +22,9 @@ import java.io.Serializable;
 // ===================================
 
 public class MainMenuView extends MenuView implements Serializable{
-    private String mainMenu; //text of the menu
-    private int max; //number of items in the menu
-    Scanner keyboard = new Scanner(System.in);  
+    //private String mainMenu; //text of the menu
+    //private int max; //number of items in the menu
+    //Scanner keyboard = new Scanner(System.in);  
     //Constructor 
     public MainMenuView() {
 
@@ -157,7 +157,23 @@ public class MainMenuView extends MenuView implements Serializable{
     // ===================================     
     public void startSavedGame()
     {
-        System.out.println("\nSave game option selected.");
+       
+        String filePath ;
+        
+        // prompt user and get a file path
+        System.out.println("\n\nEnter the file path where you want to load the game from:");
+        keyboard.nextLine();  // this gets rid of the newline left by getMenuOption( )
+        filePath = keyboard.nextLine();
+         
+        // calls the getSavedGame( ) method in the GameControl class to load the game
+        GameControl.getSavedGame(filePath);
+
+        // and now you can display the game menu for the loaded game
+        GameMenuView gmv = new GameMenuView();
+        gmv.displayMenu();
+
+
+
     }
     
     // The display Help menu method
@@ -180,7 +196,18 @@ public class MainMenuView extends MenuView implements Serializable{
     // ===================================     
     public void displaySaveGameView()
     {
-        System.out.println("\nDisplay Save Game View option selected.");
+  
+        String location;
+  
+            System.out.print("\nWhere would you like to save your game? ");   
+            keyboard.nextLine();  // this gets rid of the newline left by getMenuOption( )
+            location = keyboard.nextLine();
+            
+            // Save the Game
+            GameControl.saveGame(location);   
+            
+
+    
     }
 
 }

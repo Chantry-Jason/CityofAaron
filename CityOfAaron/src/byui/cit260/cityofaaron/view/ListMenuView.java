@@ -12,8 +12,8 @@ import java.util.Scanner;
  */
 public class ListMenuView extends MenuView implements Serializable{
     //private String gameMenu; //text of the menu
-    private int max; //number of items in the menu
-    Scanner keyboard = new Scanner(System.in);  
+   //private int max; //number of items in the menu
+    //Scanner keyboard = new Scanner(System.in);  
     // reference to a Game object
     private static Game theGame;
     //Constructor
