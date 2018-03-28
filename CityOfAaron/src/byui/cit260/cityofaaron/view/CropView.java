@@ -333,13 +333,7 @@ public class CropView implements Serializable{
             "Bushels of wheat eaten by rats: " + eatenByRats + "\n" + 
             "Bushels of wheat fed to the people: " + wheatToPeople + "\n" +
             "Total bushels of wheat inthe storehouse: " + wheat + "\n" );
-
-            //if more than 50% people starve, end game with message
-            
-            //incrament year
-            
-           
-            
+        System.out.println("******************************************************\n");
         
 
   
