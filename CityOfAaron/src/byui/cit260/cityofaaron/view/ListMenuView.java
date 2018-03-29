@@ -78,7 +78,7 @@ public class ListMenuView extends MenuView implements Serializable{
         
         
         System.out.println("\nHere is a list of the animals you currently have.");
-        Game theGame = new Game();
+        Game theGame = CityOfAaron.Main.getTheGame();
         ArrayList<ListItem> animals = theGame.getAnimals();
         
 
@@ -98,7 +98,7 @@ public class ListMenuView extends MenuView implements Serializable{
     public void viewprintTools()
     {
         System.out.println("\nHere is a list of the tools you have in the shed.");
-        Game theGame = new Game();
+        Game theGame = CityOfAaron.Main.getTheGame();
         ArrayList<ListItem> tools = theGame.getTools();
         
         for (int i = 0; i < tools.size(); i++) {
@@ -116,7 +116,7 @@ public class ListMenuView extends MenuView implements Serializable{
     {
         System.out.println("\nHere is a list of your current provisions.");
                
-        Game theGame = new Game();
+        Game theGame = CityOfAaron.Main.getTheGame();
         ArrayList<ListItem> prov = theGame.getTools();
         
         for (int i = 0; i < prov.size(); i++) {
@@ -133,7 +133,8 @@ public class ListMenuView extends MenuView implements Serializable{
     public void viewprintAuthors()
     {
         System.out.println("\nView/Print Authors was selected.");
-        
+                       
+ 
     }
     
 }

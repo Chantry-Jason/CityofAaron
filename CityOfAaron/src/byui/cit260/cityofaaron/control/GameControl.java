@@ -35,8 +35,8 @@ public class GameControl implements Serializable{
     {
         // Created the game object. Save it in the main driver file
             theGame = new Game();
-            Game.setCurrentGame(theGame);
-            
+            //Game.setCurrentGame(theGame);
+            CityOfAaron.Main.setTheGame(theGame);
         // create the player object. Save it in the game object
         Player thePlayer = new Player();
         thePlayer.setName(pName);
@@ -122,13 +122,13 @@ public class GameControl implements Serializable{
         // create the Map object, it is 5 x 5
         // refer to the Map constructor
         Map theMap = new Map(MAX_ROW, MAX_COL);
-        System.out.println("createMap: " + MAX_ROW + " x " + MAX_COL);
+        //System.out.println("createMap: " + MAX_ROW + " x " + MAX_COL);
         
         //********************************************************************
         //** River Col 0-4, 4
         // create a string that will go in the Location objects
         // that contain the river
-        System.out.println("creating river");
+        //System.out.println("creating river");
         String river = "\nYou are on the River. The river is the source" +
                        "\nof life for our city. The river marks the eastern " +
                        "\nboundary of the city - it is wilderness to the East.";
@@ -149,7 +149,7 @@ public class GameControl implements Serializable{
         //********************************************************************
         //** Hint for Loc 0,2
         // define the string for a farm land location
-        System.out.println("creating farmland hint 0,2");
+        //System.out.println("creating farmland hint 0,2");
         String farmland = "\nYou are on the fertile banks of the River." +
         "\nIn the spring this low farmland floods and is covered with rich" +
         "\nnew soil. Wheat is planted as far as you can see."; 
@@ -163,7 +163,7 @@ public class GameControl implements Serializable{
         //********************************************************************
         //** Hint for Loc 2,0
         // define the string for a farm land location
-        System.out.println("creating farmland hint 2,0");
+        //System.out.println("creating farmland hint 2,0");
         String farmland2 = "\nYou are on farmland with rich soil" +
         "\nThis farmland is next to the desert so don't plant rice here," +
         "\nit's too hot! Nothing is currently planted in this field."; 
@@ -179,7 +179,7 @@ public class GameControl implements Serializable{
         //** Desert  0-1, 0-1
         // create a string that will go in the Location objects
         // that contain the Desert
-        System.out.println("creating desert");
+        //System.out.println("creating desert");
         String desert = "\nYou are in the Desert. The desert is where criminals" +
                        "\nare banished. It is sand and bones as far as the eye" +
                        "\ncan see. The desert is the North West boundary of the map.";
@@ -257,6 +257,7 @@ public class GameControl implements Serializable{
             ObjectInputStream input = new ObjectInputStream(fips);
             //theGame = (Game)  input.readObject();
             theGame = (Game) input.readObject();
+            CityOfAaron.Main.setTheGame(theGame);
         }
         catch(Exception e)
         {
@@ -271,12 +272,12 @@ public class GameControl implements Serializable{
     // Side Effect: the game reference in the driver is updated
     public static void saveGame(String filePath) 
     {
-        Game game = new Game();
+        Game theGame = CityOfAaron.Main.getTheGame();
         //theGame = new Game();
         try (FileOutputStream fops = new FileOutputStream(filePath))
         {
             ObjectOutputStream out = new ObjectOutputStream(fops);
-            out.writeObject(game);
+            out.writeObject(theGame);
         }
         catch(Exception e)
         {

@@ -1,35 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package byui.cit260.cityofaaron.model;
 import java.io.Serializable;
 
 /**
  *
- * @author kenpc
+ * @author kenpc, JChantry
  */
 public class CropData implements Serializable{
     
     // CropData integers 
-    private static int year; 
-    private static int population;
-    private static int acresOwned; 
-    private static int cropYield; 
-    private static int wheatInStore; 
-    private static int numberWhoDied;
-    private static int newPeople;
-    private static int harvest;
-    private static int harvestAfterOffering;
-    private static int offering;
-    private static int offeringBushels;
-    private static int peopleFed;
-    private static int acresPlanted;
-    private static int numStarved;
-    private static int eatenByRats;
-    private static int wheatForPeople;
-    private static int costOfLandThisRound;
+    private  int year; 
+    private  int population;
+    private  int acresOwned; 
+    private  int cropYield; 
+    private  int wheatInStore; 
+    private  int numberWhoDied;
+    private  int newPeople;
+    private  int harvest;
+    private  int harvestAfterOffering;
+    private  int offering;
+    private  int offeringBushels;
+    private  int peopleFed;
+    private  int acresPlanted;
+    private  int numStarved;
+    private  int eatenByRats;
+    private  int wheatForPeople;
+    private  int costOfLandThisRound;
 
     public int getCostOfLandThisRound() {
         return costOfLandThisRound;

@@ -22,17 +22,18 @@ public class Game implements Serializable{
     // Class instance variables
 
    //private Map theMap;
-    private static Player thePlayer;
+    private  Player thePlayer;
     //private static CropData cropData;
-    private static CropData theCrops;
-    private static TeamMember[] team ;
-    private static ArrayList<ListItem> animals; 
-    private static ArrayList<ListItem> tools ;
-    private static ArrayList<ListItem> provisions;
+    private  CropData theCrops;
+    private  TeamMember[] team ;
+    private  ArrayList<ListItem> animals; 
+    private  ArrayList<ListItem> tools ;
+    private  ArrayList<ListItem> provisions;
 
     private static Game theGame;
+    //private static CropData theCropData = theGame.getCropData();
     //private CropData theCrops;
-    private static Map theMap;
+    private  Map theMap;
 
 
 
@@ -109,7 +110,7 @@ public class Game implements Serializable{
     }
 
     public void setAnimals(ArrayList<ListItem> animals) {
-    //public void setAnimals(string[] name, int[] numObj) {
+        //public void setAnimals(string[] name, int[] numObj) {
         this.animals = new ArrayList<ListItem>(animals);
     }
 

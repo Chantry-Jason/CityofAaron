@@ -22,8 +22,12 @@ public class CropView implements Serializable{
     private static Scanner keyboard = new Scanner(System.in);   
      
     // Get reference to the Game object and the Crops object
-    private static Game theGame = Game.getCurrentGame();
-    private static CropData theCropData = theGame.getCropData();
+    //private static Game _theGame = Game.getCurrentGame();
+    //private static CropData _theCropData = _theGame.getCropData();
+
+    public CropView() {
+    }
+    
     
     // The runCropsView method()
     // Purpose: runs the Hamurabi game
@@ -31,7 +35,8 @@ public class CropView implements Serializable{
     // Returns: none
     public void runCropsView()
     {
-
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // call the buyLandView( ) method
         buyLandView();
         
@@ -41,17 +46,17 @@ public class CropView implements Serializable{
         
         setOfferingView();
         //Calculate crops harvested. data already checked so no errors should occur
-        CropControl.harvestCrops(theCropData);
+        CropControl.harvestCrops(_theCropData);
         //payOffering
         payOfferingView();
         //storeWheat
-        CropControl.storeWheat(theCropData);
+        CropControl.storeWheat(_theCropData);
         //calcEatenByRats
-        CropControl.calcEatenByRats(theCropData);
+        CropControl.calcEatenByRats(_theCropData);
         //calcStarved
-        CropControl.calcStarved(theCropData);
+        CropControl.calcStarved(_theCropData);
         //growPopulation
-        CropControl.growPopulation(theCropData);
+        CropControl.growPopulation(_theCropData);
         //showStarvedView()
         showStarvedView();
         //displayCropsReportView()
@@ -69,21 +74,23 @@ public class CropView implements Serializable{
     //Author: Jason Chantry, Ken Strobell
     public static void buyLandView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // Get the cost of land for this round.
-        int price = CropControl.calcLandCost(theCropData);
+        int price = CropControl.calcLandCost(_theCropData);
         int toBuy;
         boolean paramsNotOkay;
         
         // Prompt the user to enter the number of acres to buy
-        System.out.format("Land is selling for %d bushels per acre.%n",price);
+        System.out.format("\nLand is selling for %d bushels per acre.\n",price);
         
         do {
             paramsNotOkay = false;
-            System.out.print("\nHow many acres of land do you wish to buy? ");   
+            System.out.print("How many acres of land do you wish to buy? ");   
             toBuy = keyboard.nextInt();
             try {
                 // Call the buyLand( ) method in the control layer to buy the land
-                CropControl.buyLand(price, toBuy, theCropData);   
+                CropControl.buyLand(price, toBuy, _theCropData);   
             } catch(CropException e) {
                 System.out.println("I am sorry master, I cannot do this.");
                 System.out.println(e.getMessage());
@@ -100,23 +107,25 @@ public class CropView implements Serializable{
     //Author: Jason Chantry
     public static void sellLandView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // Get the cost of land for this round.
-        int price = theCropData.getCostOfLandThisRound();
+        int price = _theCropData.getCostOfLandThisRound();
         boolean paramsNotOkay;
         int toSell;
 // Prompt the user to enter the number of acres to buy
-        System.out.format("Land is selling for %d bushels per acre.%n",price);
+        System.out.format("\nLand is selling for %d bushels per acre.\n",price);
 
         // Call the sellLand( ) method in the control layer to sell the land
         
         do {
             paramsNotOkay = false;
-            System.out.print("\nHow many acres of land do you wish to sell? "); 
+            System.out.print("How many acres of land do you wish to sell? "); 
             //  Get the user’s input and save it.
             toSell = keyboard.nextInt();
             try {
                 // Call the sellLand( ) method in the control layer to sell the land
-                CropControl.sellLand(price, toSell, theCropData);   
+                CropControl.sellLand(price, toSell, _theCropData);   
             } catch(CropException e) {
                 System.out.println("I am sorry master, I cannot do this.");
                 System.out.println(e.getMessage());
@@ -134,23 +143,25 @@ public class CropView implements Serializable{
     //Author: Jason Chantry
     public static void plantCropsView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();       
         // Get the cost of land for this round.
-        int landOwned = theCropData.getAcresOwned();
+        int landOwned = _theCropData.getAcresOwned();
         boolean paramsNotOkay;
         int toPlant;
 // Prompt the user to enter the number of acres to buy
-        System.out.format("You currently own %d acres of land.%n",landOwned);
+        System.out.format("\nYou currently own %d acres of land.\n",landOwned);
 
         // Call the plantCrops( ) method in the control layer to set aside how many crops to plant
         
         do {
             paramsNotOkay = false;
-            System.out.print("\nHow many acres of land do you wish to plant? "); 
+            System.out.print("How many acres of land do you wish to plant? "); 
             //  Get the user’s input and save it.
             toPlant = keyboard.nextInt();
             try {
                 // Call the sellLand( ) method in the control layer to sell the land
-                CropControl.plantCrops(toPlant, theCropData);   
+                CropControl.plantCrops(toPlant, _theCropData);   
             } catch(CropException e) {
                 System.out.println("I am sorry master, I cannot do this.");
                 System.out.println(e.getMessage());
@@ -168,20 +179,22 @@ public class CropView implements Serializable{
     //Author: Jason Chantry
     public static void showStarvedView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // Get the cost of land for this round.
-        int starved = theCropData.getNumStarved();
-        int population = theCropData.getPopulation();
+        int starved = _theCropData.getNumStarved();
+        int population = _theCropData.getPopulation();
 
 
         // determine if people starved or not
         if (starved > 0) {
-            System.out.println("M'Lord, unfortunately you did not set aside enough wheat \n"
+            System.out.println("\nM'Lord, unfortunately you did not set aside enough wheat \n"
                     + "to feed all of your people. " + starved + " of your citizens \n"
                     + "starved to death. The total city population is now " + population + " %n.");
         } else {
-            System.out.println("Blessed be the name of the Lord! None of your \n"
+            System.out.println("\nBlessed be the name of the Lord! None of your \n"
                     + "citizens starved this year. Your population is now"
-                    + " " + population + ".");
+                    + " " + population + ".%n");
         }
   
     }
@@ -195,12 +208,13 @@ public class CropView implements Serializable{
     //Author: Jason Chantry
     public static void setOfferingView()
     {
-                
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();        
         int offering;
         boolean paramsNotOkay;
         
         // Prompt the user to enter the percentage to offer
-        System.out.format("Offerings to the Lord will bring forth blessings.");
+        System.out.format("\nOfferings to the Lord will bring forth blessings.");
         
         do {
             paramsNotOkay = false;
@@ -208,7 +222,7 @@ public class CropView implements Serializable{
             offering = keyboard.nextInt();
             try {
                 // Call the setOffering( ) method in the control layer to set aside offerings
-                CropControl.setOffering(offering, theCropData);   
+                CropControl.setOffering(offering, _theCropData);   
             } catch(CropException e) {
                 System.out.println("I am sorry master, I cannot do this.");
                 System.out.println(e.getMessage());
@@ -225,8 +239,10 @@ public class CropView implements Serializable{
     //Author: Jason Chantry
     public static void payOfferingView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // Get the cost of land for this round.
-        int offering = theCropData.getOffering();
+        int offering = _theCropData.getOffering();
         double offeringPercent;
         boolean paramsNotOkay;
         
@@ -238,7 +254,7 @@ public class CropView implements Serializable{
                 offeringPercent = offering / 100.00;
                 
                 // Call the payOffering( ) method in the control layer to pay tithes
-                CropControl.payOffering(offeringPercent, theCropData);   
+                CropControl.payOffering(offeringPercent, _theCropData);   
             } catch(CropException e) {
                 System.out.println("I am sorry master, I cannot do this. There was an error in paying tithes.");
                 paramsNotOkay = true;
@@ -252,8 +268,10 @@ public class CropView implements Serializable{
 //Author: Ken Strobell
     public static void feedPeopleView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // Feed People for this round.
-        int wheatInStore = theCropData.getWheatInStore();
+        int wheatInStore = _theCropData.getWheatInStore();
 
         // Feed your people
         //System.out.format("Feeding your people will cost %d of your wheat in store.%n",feed);
@@ -274,7 +292,7 @@ public class CropView implements Serializable{
             toFeed = keyboard.nextInt();
             try {
                 // Call the feedPeople( ) method in the control layer to feed people
-                CropControl.feedPeople(toFeed, theCropData);  
+                CropControl.feedPeople(toFeed, _theCropData);  
             } catch(CropException e) {
                 System.out.println("I am sorry master, I cannot do this.");
                 System.out.println(e.getMessage());
@@ -303,22 +321,24 @@ public class CropView implements Serializable{
     //Author: Jason Chantry
     public static void endOfYearReportView()
     {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
         // Get the cost of land for this round.
-        int year = theCropData.getYear();
-        int starved = theCropData.getNumStarved();
-        int growth = theCropData.getNewPeople();
-        int population = theCropData.getPopulation();
-        int land = theCropData.getAcresOwned();
-        int bushelsPerAcre = theCropData.getCostOfLandThisRound();
-        int wheatHarvested = theCropData.getHarvest();
-        int offerings = theCropData.getOffering();
-        int harvestAfterOfferings = theCropData.getHarvestAfterOffering();
-        int eatenByRats = theCropData.getEatenByRats();
-        int wheatToPeople = theCropData.getWheatForPeople();
-        int wheat = theCropData.getWheatInStore();
+        int year = _theCropData.getYear();
+        int starved = _theCropData.getNumStarved();
+        int growth = _theCropData.getNewPeople();
+        int population = _theCropData.getPopulation();
+        int land = _theCropData.getAcresOwned();
+        int bushelsPerAcre = _theCropData.getCostOfLandThisRound();
+        int wheatHarvested = _theCropData.getHarvest();
+        int offerings = _theCropData.getOffering();
+        int harvestAfterOfferings = _theCropData.getHarvestAfterOffering();
+        int eatenByRats = _theCropData.getEatenByRats();
+        int wheatToPeople = _theCropData.getWheatForPeople();
+        int wheat = _theCropData.getWheatInStore();
 
         System.out.println(
-            "******************************************************\n" +
+            "\n******************************************************\n" +
             "*           CITY OF AARON: ANNUAL REPORT             *\n" +
             "******************************************************\n" +
             "Years since you were made ruler: " + year + " \n" + 

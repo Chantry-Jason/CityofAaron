@@ -86,28 +86,7 @@ public class MainMenuView extends MenuView implements Serializable{
     {
 
 
-        //Create a new Game object.
-        Game theGame = new Game();
-        // Save a reference to it in the model.Game class.
-        Game.setCurrentGame(theGame);
-        // Create the CropData object, 
-        // initialize it and save a reference to it in the Game
-        CropData theCrops = new CropData();
-        theCrops.setYear(0);
-        theCrops.setPopulation(100);
-        theCrops.setNewPeople(5);
-        theCrops.setCropYield(3);
-        theCrops.setNumberWhoDied(0);
-        theCrops.setOffering(10);
-        theCrops.setWheatInStore(2700);
-        theCrops.setAcresOwned(1000);
-        theCrops.setAcresPlanted(1000);
-        theCrops.setHarvest(3000);
-        theCrops.setOfferingBushels(300);
-        theCrops.setAcresPlanted(1000); 
-        
-        theGame.setCropData(theCrops);
-        
+  
         // Display the Banner Page.
         System.out.println(
             "\n********************************************************\n" +
@@ -132,11 +111,12 @@ public class MainMenuView extends MenuView implements Serializable{
         // Save the user’s name in the Player object
         thePlayer.setName(name);
         // Save a reference to the player object in the Game object
-        theGame.setThePlayer(thePlayer);
+        //theGame.setThePlayer(thePlayer);
+        GameControl.createNewGame(name);
         // Display a welcome message
         System.out.println("\nWelcome to the city " + name + " have fun!!");
         // call the createNewGame( ) method. Pass the name as a parameter
-        GameControl.createNewGame(name);
+        //GameControl.createNewGame(name);
 
 
         // Display the Game menu
@@ -157,7 +137,10 @@ public class MainMenuView extends MenuView implements Serializable{
     // ===================================     
     public void startSavedGame()
     {
-       
+       //Create a new Game object.
+       Game theGame = new Game();
+       // Save a reference to it in the model.Game class.
+       //CityOfAaron.Main.setTheGame(theGame);
         String filePath ;
         
         // prompt user and get a file path

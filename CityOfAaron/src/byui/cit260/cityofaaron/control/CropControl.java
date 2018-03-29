@@ -172,7 +172,7 @@ public class CropControl implements Serializable{
         
         //wheatInStore = wheatInStore + (acresToSell x landPrice)
         int wheat = cropData.getWheatInStore();
-        wheat -= (acresToSell * landPrice);
+        wheat += (acresToSell * landPrice);
         cropData.setWheatInStore(wheat);
         
         //return acresOwned
@@ -324,9 +324,9 @@ public class CropControl implements Serializable{
                 //subtract wheat eaten by rats from wheat in store
                 wheatInStore =- percentEaten;
                 cropData.setWheatInStore(wheatInStore);
-                cropData.setEatenByRats(eatenByRats);
-            }               
-        
+                //cropData.setEatenByRats(eatenByRats);
+            }              
+            cropData.setEatenByRats(eatenByRats); //moved so 0 will be written if no rat prob. JEC
             return eatenByRats;
        
     }

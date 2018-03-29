@@ -2,6 +2,7 @@
 package byui.cit260.cityofaaron.view;
 
 import byui.cit260.cityofaaron.model.CropData;
+import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.Player;
 import java.io.Serializable;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class GameMenuView extends MenuView implements Serializable{
     //Scanner keyboard = new Scanner(System.in);  
     //Constructor
     private static CropData theCrops;
+    
     public GameMenuView() {
 
         
@@ -46,7 +48,7 @@ public class GameMenuView extends MenuView implements Serializable{
     // ===================================       
     @Override public void doAction(int option)
     {
-        CropData theCrops = new CropData();
+        //CropData theCrops = new CropData();
         switch(option) {
             case 1: // display map of the game
                 displayMap();
@@ -58,7 +60,7 @@ public class GameMenuView extends MenuView implements Serializable{
                 moveLocation();
                 break;
             case 4: // Manage the Crops
-                manageCrops(theCrops);
+                manageCrops();
                 break;
             case 5: // back to main menu
                 break;
@@ -100,24 +102,32 @@ public class GameMenuView extends MenuView implements Serializable{
     // Purpose: manage a players crops
     // Parameters: none
     // Returns: none
+    // Author: JChantry
     // ===================================   
-    public void manageCrops(CropData cropData)
+    public void manageCrops()
     {
         System.out.println("\n-----------------------------------");
-        CropData theCrops = new CropData();
-        Player player = new Player();
-        int startPopulation = theCrops.getPopulation();
-
-        CropView cropView = new CropView();
-        cropView.runCropsView();
+        //CropData theCrops = new CropData();
+        //Player player = new Player();
+        Game theGame = CityOfAaron.Main.getTheGame();
+        String name = theGame.getThePlayer().getName();
+        //System.out.println(name);
+        
+        int startPopulation = theGame.getCropData().getPopulation();
+        //System.out.println(startPopulation);
+        
+        //CropView cropView = new CropView();
+        //byui.cit260.cityofaaron.view.CropView.
+        CropView cv = new CropView();
+        cv.runCropsView();
         
         //if more than 50% people died, end game
-        int population = theCrops.getPopulation();
+        int population = theGame.getCropData().getPopulation();
         
         double loss = ((population*1.00) / startPopulation);
         loss = 1.00 - loss;
         if (loss > 0.5) {
-            String name = player.getName();
+            
             System.out.println("You have received a letter from the High Priest over"
                     + " the City of Aaron. \nIt reads: \n");
             System.out.println("Dear " + name + ",\n"
@@ -131,9 +141,10 @@ public class GameMenuView extends MenuView implements Serializable{
             System.exit(0);
         }
         //Incrament year by 1
-        int year = theCrops.getYear();
+        int year = theGame.getCropData().getYear();
         year = year + 1;
-        theCrops.setYear(year);
+        CropData _theCropData = theGame.getCropData();
+        _theCropData.setYear(year);
     }
     
 }

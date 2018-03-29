@@ -1,3 +1,5 @@
+package CityOfAaron;
+
 
 import byui.cit260.cityofaaron.control.Map;
 import byui.cit260.cityofaaron.model.CropData;
@@ -15,9 +17,9 @@ import byui.cit260.cityofaaron.view.MainMenuView;
  * @author JChantry
  */
 public class Main {
-    private static Game theGame;
-    private CropData theCrops;
-    private Map theMap;
+    private static Game theGame; //static
+    //private CropData theCrops;
+    //private Map theMap;
 
     //Main Function - entry point for the program
     //runs the main menu
@@ -27,4 +29,12 @@ public class Main {
         
         mmv.displayMenu();
     }   
+
+    public static Game getTheGame() {
+        return theGame;
+    }
+
+    public static void setTheGame(Game _theGame) {
+        theGame = _theGame;
+    }
 }
