@@ -287,9 +287,9 @@ public class GameControl implements Serializable{
     }
 
     // the printWriter method
-    // Purpose: save a list of animals to disk
-    // Parameters: the file path, the object
-    // Returns: none
+    // Purpose: save a list to disk
+    // Parameters: the file path, the object, the name of the list.
+    // Returns: none. Will print success message.
     
     public static void printWriter(String filePath, ArrayList<ListItem> inventoryItems, String ListName) 
     {
