@@ -308,7 +308,7 @@ public class GameControl implements Serializable{
                 //System.out.println(item.getNumber());
             }
             System.out.println("\nReport was saved to " + filePath + " successfully!");
-
+            pwout.close();
         }
         catch(Exception e)
         {

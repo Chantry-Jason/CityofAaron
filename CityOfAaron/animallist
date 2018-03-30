@@ -1,10 +1,10 @@
 
 
-            Animal Inventory Report                
+   Animal Inventory Report                
 
 Animal                Quantity
 ------                --------
-%7d
-%7d
-%7d
-%7d
+cows                     12
+horses                    3
+pigs                      7
+goats                     4
