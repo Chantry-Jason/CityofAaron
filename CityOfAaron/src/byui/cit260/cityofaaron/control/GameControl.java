@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 
@@ -285,6 +286,34 @@ public class GameControl implements Serializable{
         }
     }
 
+    // the printWriter method
+    // Purpose: save a list of animals to disk
+    // Parameters: the file path, the object
+    // Returns: none
+    
+    public static void printWriter(String filePath, ArrayList<ListItem> inventoryItems, String ListName) 
+    {
+        
+        //theGame = new Game();
+        try (PrintWriter pwout = new PrintWriter(filePath))
+        {
+            pwout.println("\n\n   " + ListName + " Inventory Report                ");
+            
+            pwout.printf("%n%-20s%10s", ListName, "Quantity");
+            pwout.printf("%n%-20s%10s", "------", "--------"); 
+            for (ListItem item : inventoryItems) {
+                pwout.printf("%n%-20s%7d", item.getName(), item.getNumber());
+               
+                //System.out.println(item.getName());
+                //System.out.println(item.getNumber());
+            }
+            System.out.println("\nReport was saved to " + filePath + " successfully!");
 
+        }
+        catch(Exception e)
+        {
+            System.out.println("\nThere was an error saving the Animal list to disk. " + e.getMessage());
+        }
+    }
 
 }

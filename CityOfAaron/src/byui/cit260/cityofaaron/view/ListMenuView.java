@@ -1,5 +1,6 @@
 package byui.cit260.cityofaaron.view;
 
+import byui.cit260.cityofaaron.control.GameControl;
 import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.ListItem;
 import java.io.Serializable;
@@ -8,13 +9,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author KStrobell
+ * @author KStrobell, JChantry
  */
 public class ListMenuView extends MenuView implements Serializable{
     //private String gameMenu; //text of the menu
    //private int max; //number of items in the menu
     //Scanner keyboard = new Scanner(System.in);  
     // reference to a Game object
+    private static Scanner keyboard = new Scanner(System.in);
     private static Game theGame;
     //Constructor
     public ListMenuView() {
@@ -81,12 +83,27 @@ public class ListMenuView extends MenuView implements Serializable{
         Game theGame = CityOfAaron.Main.getTheGame();
         ArrayList<ListItem> animals = theGame.getAnimals();
         
-
+           System.out.println("\n\n   Animal Inventory Report                ");
+           System.out.printf("%n%-20s%10s", "Animal", "Quantity");
+           System.out.printf("%n%-20s%10s", "------", "--------"); 
+            for (ListItem item : animals) {
+                System.out.printf("%n%-20s%7d", item.getName(), item.getNumber());
+            }
+        /*
         for (int i = 0; i < animals.size(); i++) {
             ListItem listItem = animals.get(i);
             System.out.println("\n\tItem: " + listItem.getName() +
                                "\n\tQuantity: " + listItem.getNumber());
         }
+        */
+        System.out.println("\n\nWould you like to save this list to disk? (y/n)");
+        String ans = keyboard.next();
+        if ("y".equals(ans)) {
+            System.out.println("\nWhat is the path and filename you would like to save to?");
+            String fileLocation = keyboard.next();   
+            
+            GameControl.printWriter(fileLocation, animals, "Animal");
+        } 
         
         
     }
@@ -101,12 +118,24 @@ public class ListMenuView extends MenuView implements Serializable{
         Game theGame = CityOfAaron.Main.getTheGame();
         ArrayList<ListItem> tools = theGame.getTools();
         
-        for (int i = 0; i < tools.size(); i++) {
-            ListItem listItem = tools.get(i);
-            System.out.println("\n\tItem: " + listItem.getName() +
-                               "\n\tQuantity: " + listItem.getNumber());
+        System.out.println("\n\n   Tool Inventory Report                ");
+        System.out.printf("%n%-20s%10s", "Tool", "Quantity");
+        System.out.printf("%n%-20s%10s", "------", "--------"); 
+        for (ListItem item : tools) {
+                System.out.printf("%n%-20s%7d", item.getName(), item.getNumber());
         }
+        System.out.println("\n\nWould you like to save this list to disk? (y/n)");
+        String ans = keyboard.next();
+        if ("y".equals(ans)) {
+            System.out.println("\nWhat is the path and filename you would like to save to?");
+            String fileLocation = keyboard.next();   
+            
+            GameControl.printWriter(fileLocation, tools, "Tool");
+        } 
     }
+    
+    
+    
     // The viewprintList of Provisions method
     // Purpose: view a List of Provisions
     // Parameters: none
@@ -119,10 +148,11 @@ public class ListMenuView extends MenuView implements Serializable{
         Game theGame = CityOfAaron.Main.getTheGame();
         ArrayList<ListItem> prov = theGame.getTools();
         
-        for (int i = 0; i < prov.size(); i++) {
-            ListItem listItem = prov.get(i);
-            System.out.println("\n\tItem: " + listItem.getName() +
-                               "\n\tQuantity: " + listItem.getNumber());
+        System.out.println("\n\n   Provisions Inventory Report                ");
+        System.out.printf("%n%-20s%10s", "Provision", "Quantity");
+        System.out.printf("%n%-20s%10s", "------", "--------"); 
+        for (ListItem item : prov) {
+                System.out.printf("%n%-20s%7d", item.getName(), item.getNumber());
         }
     }
     // The viewprintList of Authors method
