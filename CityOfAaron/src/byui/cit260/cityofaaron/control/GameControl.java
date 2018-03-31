@@ -35,9 +35,9 @@ public class GameControl implements Serializable{
     public static void createNewGame(String pName)
     {
         // Created the game object. Save it in the main driver file
-            theGame = new Game();
-            //Game.setCurrentGame(theGame);
-            CityOfAaron.Main.setTheGame(theGame);
+        theGame = new Game();
+        //Game.setCurrentGame(theGame);
+        CityOfAaron.Main.setTheGame(theGame);
         // create the player object. Save it in the game object
         Player thePlayer = new Player();
         thePlayer.setName(pName);
@@ -312,7 +312,7 @@ public class GameControl implements Serializable{
         }
         catch(Exception e)
         {
-            System.out.println("\nThere was an error saving the Animal list to disk. " + e.getMessage());
+            System.out.println("\nThere was an error saving the the list to disk. " + e.getMessage());
         }
     }
 

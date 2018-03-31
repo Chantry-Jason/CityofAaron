@@ -146,7 +146,7 @@ public class ListMenuView extends MenuView implements Serializable{
         System.out.println("\nHere is a list of your current provisions.");
                
         Game theGame = CityOfAaron.Main.getTheGame();
-        ArrayList<ListItem> prov = theGame.getTools();
+        ArrayList<ListItem> prov = theGame.getProvisions();
         
         System.out.println("\n\n   Provisions Inventory Report                ");
         System.out.printf("%n%-20s%10s", "Provision", "Quantity");
@@ -154,6 +154,14 @@ public class ListMenuView extends MenuView implements Serializable{
         for (ListItem item : prov) {
                 System.out.printf("%n%-20s%7d", item.getName(), item.getNumber());
         }
+        System.out.println("\n\nWould you like to save this list to disk? (y/n)");
+        String ans = keyboard.next();
+        if ("y".equals(ans)) {
+            System.out.println("\nWhat is the path and filename you would like to save to?");
+            String fileLocation = keyboard.next();   
+            
+            GameControl.printWriter(fileLocation, prov, "Provision");
+        } 
     }
     // The viewprintList of Authors method
     // Purpose: view a List of Authors
