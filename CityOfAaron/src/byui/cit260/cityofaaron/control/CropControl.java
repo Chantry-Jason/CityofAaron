@@ -320,9 +320,10 @@ public class CropControl implements Serializable{
                 //}
                 //Calculate random percentage eaten by rats
                 int percentEaten = random.nextInt(BUSHELS_RANGE)+ BUSHELS_BASE;
-                eatenByRats = wheatInStore * (percentEaten / 100);
+                double perEatDec = wheatInStore * (percentEaten / 100.00);
+                eatenByRats = (int) Math.round(perEatDec);
                 //subtract wheat eaten by rats from wheat in store
-                wheatInStore =- percentEaten;
+                wheatInStore = wheatInStore - eatenByRats;
                 cropData.setWheatInStore(wheatInStore);
                 //cropData.setEatenByRats(eatenByRats);
             }              

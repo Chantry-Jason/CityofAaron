@@ -312,7 +312,7 @@ public class GameControl implements Serializable{
         }
         catch(Exception e)
         {
-            System.out.println("\nThere was an error saving the the list to disk. " + e.getMessage());
+            System.out.println("\nThere was an error saving the the listlist to disk. " + e.getMessage());
         }
     }
 

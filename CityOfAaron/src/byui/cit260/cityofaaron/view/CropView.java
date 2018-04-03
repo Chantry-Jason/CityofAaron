@@ -37,6 +37,7 @@ public class CropView implements Serializable{
     {
         Game theGame = CityOfAaron.Main.getTheGame();
         CropData _theCropData = theGame.getCropData();
+        startReportView();
         // call the buyLandView( ) method
         buyLandView();
         
@@ -59,8 +60,12 @@ public class CropView implements Serializable{
         CropControl.growPopulation(_theCropData);
         //showStarvedView()
         showStarvedView();
+        
+        
+        
         //displayCropsReportView()
         endOfYearReportView();
+        
 
         
     }
@@ -341,7 +346,7 @@ public class CropView implements Serializable{
             "\n******************************************************\n" +
             "*           CITY OF AARON: ANNUAL REPORT             *\n" +
             "******************************************************\n" +
-            "Years since you were made ruler: " + year + " \n" + 
+            "Current Year: " + (year + 1) + " \n" +  //will incrament year when exiting cropview class
             "People who starved: " + starved + "\n" + 
             "People who moved into the city: " + growth + "\n" + 
             "Current population: " + population + "\n" + 
@@ -352,9 +357,34 @@ public class CropView implements Serializable{
             "Bushels of wheat harvested after payment of offerings: " + harvestAfterOfferings + "\n" + 
             "Bushels of wheat eaten by rats: " + eatenByRats + "\n" + 
             "Bushels of wheat fed to the people: " + wheatToPeople + "\n" +
-            "Total bushels of wheat inthe storehouse: " + wheat + "\n" );
+            "Total bushels of wheat in the storehouse: " + wheat + "\n" );
         System.out.println("******************************************************\n");
-        
+    }
+         // The startReportView method
+    // Purpose: display the city stats
+    // Parameters: none
+    // Returns: none
+    //Author: Jason Chantry
+    public static void startReportView()
+    {
+        Game theGame = CityOfAaron.Main.getTheGame();
+        CropData _theCropData = theGame.getCropData();
+       
+        int population = _theCropData.getPopulation();
+        int land = _theCropData.getAcresOwned();
+        //int year = _theCropData.getYear();
+        int wheat = _theCropData.getWheatInStore();
+
+        System.out.println(
+            "\n******************************************************\n" +
+            "*           CITY OF AARON: BEGINNING REPORT            *\n" +
+            "******************************************************\n" +
+            "You have just started as ruler of Aaron. Here are your starting stats. \n" + 
+            
+            "Current population: " + population + "\n" + 
+            "Acres of land owned by the city: " + land + "\n" + 
+            "Total bushels of wheat in the storehouse: " + wheat + "\n" );
+        System.out.println("******************************************************\n");
 
   
     }
