@@ -76,8 +76,8 @@ public class GameMenuView extends MenuView implements Serializable{
     // ===================================   
     public void displayMap()
     {
-        System.out.println("\nGame Map was selected.\n"
-                        + "***VILLAGE MAP*** \n\n"
+        System.out.println("\n"
+                + "             ***VILLAGE MAP*** \n\n"
                 + "       1     2     3     4     5     6 \n"
                 + "  1 | ... | ... | +++ | !!! | ~~~ | ### \n"
                 + "  2 | ... | ... | &&& | !!! | ~~~ | ### \n"
@@ -166,7 +166,7 @@ public class GameMenuView extends MenuView implements Serializable{
         year = year + 1;
         CropData _theCropData = theGame.getCropData();
         _theCropData.setYear(year);
-        
+        //If 10 years have passed, give the user a letter of success and end game.
         if (year == 10) {
             System.out.println("You have received a letter from the High Priest over"
                     + " the City of Aaron. \nIt reads: \n");
