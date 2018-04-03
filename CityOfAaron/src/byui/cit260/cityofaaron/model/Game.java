@@ -29,6 +29,7 @@ public class Game implements Serializable{
     private  ArrayList<ListItem> animals; 
     private  ArrayList<ListItem> tools ;
     private  ArrayList<ListItem> provisions;
+    
 
     private static Game theGame;
     //private static CropData theCropData = theGame.getCropData();

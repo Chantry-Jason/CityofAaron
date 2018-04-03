@@ -15,6 +15,7 @@ public class Location implements Serializable {
     private String description;
     private String symbol;
     
+    
     //Constructor
     public Location () {
         

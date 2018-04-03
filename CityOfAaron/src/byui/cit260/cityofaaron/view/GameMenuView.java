@@ -1,6 +1,7 @@
 
 package byui.cit260.cityofaaron.view;
 
+import byui.cit260.cityofaaron.control.Map;
 import byui.cit260.cityofaaron.model.CropData;
 import byui.cit260.cityofaaron.model.Game;
 import byui.cit260.cityofaaron.model.Player;
@@ -78,13 +79,13 @@ public class GameMenuView extends MenuView implements Serializable{
     {
         System.out.println("\n"
                 + "             ***VILLAGE MAP*** \n\n"
-                + "       1     2     3     4     5     6 \n"
-                + "  1 | ... | ... | +++ | !!! | ~~~ | ### \n"
-                + "  2 | ... | ... | &&& | !!! | ~~~ | ### \n"
-                + "  3 | +++ | +++ | o0o | !!! | ~~~ | ### \n"
-                + "  4 | +++ | +++ | $$$ | !!! | ~~~ | ### \n"
-                + "  5 | +++ | +++ | +++ | !!! | ~~~ | ### \n"
-                + "  6 | %%% | %%% | %%% | %%% | ~~~ | ### \n\n"
+                + "       0     1     2     3     4     5 \n"
+                + "  0 | @@@ | @@@ | !!! | !!! | ~~~ | fff \n"
+                + "  1 | @@@ | @@@ | &&& | !!! | ~~~ | fff \n"
+                + "  2 | --- | +++ | o0o | !!! | ~~~ | fff \n"
+                + "  3 | +++ | +++ | $$$ | !!! | ~~~ | fff \n"
+                + "  4 | +++ | +++ | +++ | !!! | ~~~ | fff \n"
+                + "  5 | %%% | %%% | %%% | %%% | ~~~ | fff \n\n"
                 + "  Key:\n"
                 + "  oOo - village\n"
                 + "  !!! - wheat\n"
@@ -117,7 +118,27 @@ public class GameMenuView extends MenuView implements Serializable{
     // ===================================   
     public void moveLocation()
     {
-        System.out.println("\nMove to another location was selected.");
+        //System.out.println("\nMove to another location was selected.");
+        Game theGame = CityOfAaron.Main.getTheGame();
+        Map theMap = theGame.getTheMap();
+        displayMap();
+        System.out.println("\nWhere would you like to go?");
+        System.out.println("\nEnter row:");
+        int locRow = keyboard.nextInt();
+        System.out.println("\nEnter column:");
+        int locCol = keyboard.nextInt();
+        System.out.println("\n\nTraveling . . .\n\n");
+        System.out.println("You have arrived.");
+        String desc = theMap.getLocation(locRow, locCol).getDescription();
+        
+        String symb = theMap.getLocation(locRow, locCol).getSymbol();
+        System.out.println("\nLocation description:"
+                + "\n " + desc);
+        System.out.println("\nLocation Symbol:"
+                + "\n " + symb);
+        
+        
+        
     }
     // The manageCrops method
     // Purpose: manage a players crops

@@ -177,6 +177,89 @@ public class GameControl implements Serializable{
         theMap.setLocation(2, 0, loc);  
         
         //********************************************************************
+        //** Hint for Loc 1,2
+        // define the string for a farm land location
+        //System.out.println("creating farmland hint 0,2");
+        String granary = "\nYou are in the city Granary and Storehouse." +
+        "\nYou can see all of riches of the city here. Grain is abundant.";
+        
+
+        // set a farmland location with a hint
+        loc = new Location();
+        loc.setDescription(granary + "\n Keep moving to find game hints!");
+        loc.setSymbol("&&&");
+        theMap.setLocation(1, 2, loc);
+        
+//********************************************************************
+        //** Hint for Loc 2,1; 3,0-1; 4,0; 4,2.
+        // define the string for a undeveloped location
+        //System.out.println("creating farmland hint 0,2");
+        String undeveloped = "\nYou are standing on undeveloped land." +
+        "\nThis land is for future expansion of the city. Lamanites hide out here"
+        + "\nsometimes. Be careful! ";
+        
+
+        // set a undeveloped location with a hint
+        loc = new Location();
+        loc.setDescription(undeveloped + "\n Keep moving to find game hints!");
+        loc.setSymbol("+++");
+        theMap.setLocation(2, 1, loc);
+        theMap.setLocation(3, 0, loc);
+        theMap.setLocation(3, 1, loc);
+        theMap.setLocation(4, 0, loc);
+        theMap.setLocation(4, 2, loc);
+        //********************************************************************
+        //** Hint for Loc 4,1.
+        // define the string for a hint location
+        //System.out.println("creating hint 4,1");
+        String undevelopedHint = "\nYou are standing on undeveloped land." +
+        "\nThis land is for future expansion of the city. Lamanites hide out here"
+        + "\nsometimes. Be careful! ";
+        
+
+        // set a undeveloped location with a hint
+        loc = new Location();
+        loc.setDescription(undevelopedHint + "\n Hint: When you give greater offerings, less wheat will be"
+                        + "\n eaten by rats when they infest the city!");
+        loc.setSymbol("+++");
+        theMap.setLocation(4, 1, loc);
+        //********************************************************************
+        //** Hint for Loc 2,2.
+        // define the string for a hint location
+        //System.out.println("creating hint 4,1");
+        String village = "\nYou are in the village of Aaron." +
+        "\nPeople are happy going to and fro. The Storehouse is to the North and"
+        + "\nthe Rulers Court is to the South. Rich Farmland is to the East. ";
+        
+
+        // set a undeveloped location with a hint
+        loc = new Location();
+        loc.setDescription(village + "\n Hint: Travel to different locations on the map to find"
+                        + "\n hints about winning the game!");
+        loc.setSymbol("oOo");
+        theMap.setLocation(2, 2, loc);
+
+        //********************************************************************
+        //** Hint for Loc 3,2.
+        // define the string for rulers court
+        //System.out.println("creating hint 4,1");
+        String rulers = "\nYou are in the Rulers Court of the City of Aaron." +
+        "\nThis is a familiar place to you. Here you sit to pass judgements and make"
+        + "\ndecisions on how to run the city. The court sits to the South of the city."
+        + "\n Farmland is to the East and undeveloped land is to the West. A long line"
+        + "\nof people wait outside to see if you will rule to feed them for another year."
+        + "\nThe last ruler starved many of their kin. Make sure to feed your people. ";
+        
+
+        // set a undeveloped location with a hint
+        loc = new Location();
+        loc.setDescription(rulers + "\n Hint: Travel to different locations on the map to find"
+                        + "\n hints about winning the game!");
+        loc.setSymbol("$$$");
+        theMap.setLocation(3, 2, loc);
+        
+        
+        //********************************************************************
         //** Desert  0-1, 0-1
         // create a string that will go in the Location objects
         // that contain the Desert
@@ -186,27 +269,51 @@ public class GameControl implements Serializable{
                        "\ncan see. The desert is the North West boundary of the map.";
 
 
-
+        loc = new Location();
         // use setters in the Location class to set the description and symbol
         loc.setDescription(desert);
         loc.setSymbol("@@@");  
 
         // set this location object in each cell 0,0 to 1,1      
-        for(int i = 0; i < 1; i++)
+        for(int i = 0; i < 2; i++)
         {
             theMap.setLocation(i, 0, loc);
             theMap.setLocation(i, 1, loc);
         }
+        
+                //********************************************************************
+        //** Border of Lamanites  5, 0-3
+        // create a string that will go in the Location objects
+        // that contain the Lamanite Border
+        //System.out.println("creating desert");
+        String lamanite = "\nYou are on the border between the land of Aaron and the Lamanites." +
+                       "\na foul stench of rotting flesh and man sweat permiates from the South." +
+                       "\nA darkness can be seen over the land to the South. The river is to the "
+                       + "\n East. The spirit of the Lord prompts you to flee to the North.";
+
+
+        loc = new Location();
+        // use setters in the Location class to set the description and symbol
+        loc.setDescription(lamanite);
+        loc.setSymbol("%%%%");  
+
+        // set this location object in each cell 5,0-3      
+        for(int i = 0; i < 4; i++)
+        {
+            theMap.setLocation(5, i, loc);
+            
+        }
+        
         //********************************************************************
         //** Farmland, WheatFields Pos 0-4, 3
         // create a string that will go in the Location objects
         // that contain the Farmland - wheatfields
-        String farmWheat = "\nYou are in the Desert. The desert is where criminals" +
-                       "\nare banished. It is sand and bones as far as the eye" +
-                       "\ncan see. The desert is the North West boundary of the map.";
+        String farmWheat = "\nYou are in the Wheat Fields." +
+                       "\nGolden wheat is growing as far as the eye can see. The river" +
+                       "\nis to the East and the city is to the West.";
 
 
-
+        loc = new Location();
         // use setters in the Location class to set the description and symbol
         loc.setDescription(farmWheat);
         loc.setSymbol("!!!");  
@@ -226,7 +333,7 @@ public class GameControl implements Serializable{
                        "\nyour city for gain. Better keep an eye on them!";
 
 
-
+        loc = new Location();
         // use setters in the Location class to set the description and symbol
         loc.setDescription(wilderness);
         loc.setSymbol("fff");  
