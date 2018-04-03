@@ -37,7 +37,10 @@ public class CropView implements Serializable{
     {
         Game theGame = CityOfAaron.Main.getTheGame();
         CropData _theCropData = theGame.getCropData();
-        startReportView();
+        int year = _theCropData.getYear();
+        if (year == 0) {
+            startReportView();
+        }
         // call the buyLandView( ) method
         buyLandView();
         

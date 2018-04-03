@@ -166,6 +166,20 @@ public class GameMenuView extends MenuView implements Serializable{
         year = year + 1;
         CropData _theCropData = theGame.getCropData();
         _theCropData.setYear(year);
+        
+        if (year == 10) {
+            System.out.println("You have received a letter from the High Priest over"
+                    + " the City of Aaron. \nIt reads: \n");
+            System.out.println("Dear " + name + ",\n"
+                    + "Congratulations! During your 10 years as ruler over the City of Aaron \n"
+                    + "you have prospered the city and our people. Your efforts are pleasing \n"
+                    + "to me and to the Lord. I hereby release you as ruler of the city with  \n"
+                    + "honor and glory forever! \n\n"
+                    + "Warmest Regards, \n"
+                    + "  The High Priest Over The Land \n\n"
+                    + "The Game is over. Goodbye...");
+            System.exit(0);
+        }
     }
     
 }
