@@ -76,7 +76,28 @@ public class GameMenuView extends MenuView implements Serializable{
     // ===================================   
     public void displayMap()
     {
-        System.out.println("\nGame Map was selected.");
+        System.out.println("\nGame Map was selected.\n"
+                        + "***VILLAGE MAP*** \n\n"
+                + "       1     2     3     4     5     6 \n"
+                + "  1 | ... | ... | +++ | !!! | ~~~ | ### \n"
+                + "  2 | ... | ... | &&& | !!! | ~~~ | ### \n"
+                + "  3 | +++ | +++ | o0o | !!! | ~~~ | ### \n"
+                + "  4 | +++ | +++ | $$$ | !!! | ~~~ | ### \n"
+                + "  5 | +++ | +++ | +++ | !!! | ~~~ | ### \n"
+                + "  6 | %%% | %%% | %%% | %%% | ~~~ | ### \n\n"
+                + "  Key:\n"
+                + "  oOo - village\n"
+                + "  !!! - wheat\n"
+                + "  ~~~ - River\n"
+                + "  ... - desert\n"
+                + "  %%%% - Lamanite Border\n"
+                + "  $$$ - Rulers Court\n"
+                + "  &&& - Granary $ Storehouse\n"
+                + "  +++ - undeveloped land\n"
+                + "  ### - wilderness");
+        
+        
+        
     }
     // The viewprintList method
     // Purpose: view a List
